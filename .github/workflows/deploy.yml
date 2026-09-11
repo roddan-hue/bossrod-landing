@@ -1,16 +1,35 @@
-name: Deploy to AWS S3 & CloudFront
+name: Build & Deploy to AWS
 
 on:
+  # Trigger on push to main (will only run the BUILD job)
   push:
     branches:
       - main
+
+  # Manual trigger from GitHub Actions UI (can run BUILD only OR BUILD + DEPLOY)
+  workflow_dispatch:
+    inputs:
+      deploy_to_aws:
+        description: 'Execute deployment to AWS S3 & CloudFront?'
+        type: boolean
+        default: true
+        required: true
+      invalidate_cache:
+        description: 'Invalidate CloudFront edge cache?'
+        type: boolean
+        default: true
+        required: false
 
 permissions:
   id-token: write
   contents: read
 
 jobs:
-  build-and-deploy:
+  # -------------------------------------------------------------
+  # Job 1: Build & Validate (Always runs on push & manual trigger)
+  # -------------------------------------------------------------
+  build:
+    name: Build & Test
     runs-on: ubuntu-latest
 
     steps:
@@ -29,6 +48,30 @@ jobs:
       - name: Build production bundle
         run: npm run build
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build
+          path: dist/
+          retention-days: 7
+
+  # -------------------------------------------------------------
+  # Job 2: Deploy to AWS (ONLY runs on manual workflow_dispatch)
+  # -------------------------------------------------------------
+  deploy:
+    name: Deploy to AWS S3 & CloudFront
+    needs: build
+    runs-on: ubuntu-latest
+    # GATED: Never deploys automatically on push. Only runs when manually triggered via workflow_dispatch.
+    if: github.event_name == 'workflow_dispatch' && inputs.deploy_to_aws == true
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: production-build
+          path: dist/
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -42,6 +85,7 @@ jobs:
           aws s3 cp dist/index.html s3://${{ secrets.AWS_S3_BUCKET_NAME || 'bossrod-landing-website' }}/index.html --cache-control "no-cache, no-store, must-revalidate"
 
       - name: Invalidate CloudFront Cache
+        if: ${{ inputs.invalidate_cache == true }}
         env:
           DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
