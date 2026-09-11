@@ -90,10 +90,17 @@ terraform plan
 terraform apply
 ```
 
-### Option C: GitHub Actions CI/CD
+### Option C: GitHub Actions CI/CD (Gated Manual Deployment)
 
-On every push to `main`, `.github/workflows/deploy.yml` builds and deploys your website automatically. Set these secrets in your GitHub repository:
+The workflow is split into two distinct stages:
+1. **Push to `main`**: Automatically runs the **Build & Test** job to ensure TypeScript compiles and assets bundle cleanly, uploading the production artifact. The deploy job is **never** executed automatically.
+2. **Deploy to AWS (Manual Trigger)**:
+   - Go to your repository's **Actions** tab on GitHub.
+   - Select **"Build & Deploy to AWS"**.
+   - Click the **"Run workflow"** button, keep `deploy_to_aws: true`, and click **Run workflow**.
+
+Set these secrets in your GitHub repository (`Settings > Secrets and variables > Actions`):
 * `AWS_ACCESS_KEY_ID`
 * `AWS_SECRET_ACCESS_KEY`
 * `AWS_S3_BUCKET_NAME` (e.g. `bossrod-landing-website`)
-* `AWS_CLOUDFRONT_DISTRIBUTION_ID`
+* `AWS_CLOUDFRONT_DISTRIBUTION_ID` (optional, for cache invalidation)
