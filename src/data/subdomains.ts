@@ -80,7 +80,7 @@ export const TECH_STACK = [
 ];
 
 export const SOCIAL_LINKS = {
-  github: 'https://github.com/bossrod',
+  github: 'https://github.com/roddan-hue',
   x: 'https://x.com/bossrod',
   linkedin: 'https://linkedin.com/in/bossrod',
   email: 'contact@bossrod.com',
