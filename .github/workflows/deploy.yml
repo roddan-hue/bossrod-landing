@@ -1,24 +1,10 @@
 name: Build & Deploy to AWS
 
 on:
-  # Trigger on push to main (will only run the BUILD job)
   push:
     branches:
       - main
-
-  # Manual trigger from GitHub Actions UI (can run BUILD only OR BUILD + DEPLOY)
   workflow_dispatch:
-    inputs:
-      deploy_to_aws:
-        description: 'Execute deployment to AWS S3 & CloudFront?'
-        type: boolean
-        default: true
-        required: true
-      invalidate_cache:
-        description: 'Invalidate CloudFront edge cache?'
-        type: boolean
-        default: true
-        required: false
 
 permissions:
   id-token: write
@@ -26,7 +12,7 @@ permissions:
 
 jobs:
   # -------------------------------------------------------------
-  # Job 1: Build & Validate (Always runs on push & manual trigger)
+  # Job 1: Build & Validate
   # -------------------------------------------------------------
   build:
     name: Build & Test
@@ -56,14 +42,15 @@ jobs:
           retention-days: 7
 
   # -------------------------------------------------------------
-  # Job 2: Deploy to AWS (ONLY runs on manual workflow_dispatch)
+  # Job 2: Deploy to AWS (Requires Manual Approval in GitHub UI)
   # -------------------------------------------------------------
   deploy:
     name: Deploy to AWS S3 & CloudFront
     needs: build
     runs-on: ubuntu-latest
-    # GATED: Never deploys automatically on push. Only runs when manually triggered via workflow_dispatch.
-    if: github.event_name == 'workflow_dispatch' && inputs.deploy_to_aws == true
+    environment:
+      name: production
+      url: https://bossrod.com
 
     steps:
       - name: Download build artifacts
@@ -85,7 +72,6 @@ jobs:
           aws s3 cp dist/index.html s3://${{ secrets.AWS_S3_BUCKET_NAME || 'bossrod-landing-website' }}/index.html --cache-control "no-cache, no-store, must-revalidate"
 
       - name: Invalidate CloudFront Cache
-        if: ${{ inputs.invalidate_cache == true }}
         env:
           DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
