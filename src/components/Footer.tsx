@@ -59,15 +59,6 @@ export function Footer() {
           </a>
           <span>•</span>
           <a
-            href={SOCIAL_LINKS.x}
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-white transition-colors"
-          >
-            X (Twitter)
-          </a>
-          <span>•</span>
-          <a
             href={SOCIAL_LINKS.linkedin}
             target="_blank"
             rel="noreferrer"

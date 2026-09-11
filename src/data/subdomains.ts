@@ -81,7 +81,6 @@ export const TECH_STACK = [
 
 export const SOCIAL_LINKS = {
   github: 'https://github.com/roddan-hue',
-  x: 'https://x.com/bossrod',
-  linkedin: 'https://linkedin.com/in/bossrod',
+  linkedin: 'https://www.linkedin.com/in/rod-daniel-bagares-122347108',
   email: 'contact@bossrod.com',
 };
