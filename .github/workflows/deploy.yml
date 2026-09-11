@@ -42,6 +42,12 @@ jobs:
           aws s3 cp dist/index.html s3://${{ secrets.AWS_S3_BUCKET_NAME || 'bossrod-landing-website' }}/index.html --cache-control "no-cache, no-store, must-revalidate"
 
       - name: Invalidate CloudFront Cache
-        if: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID != '' }}
+        env:
+          DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+          if [ -n "$DISTRIBUTION_ID" ]; then
+            echo "⚡ Invalidating CloudFront cache for distribution: $DISTRIBUTION_ID"
+            aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" --paths "/*"
+          else
+            echo "ℹ️ No AWS_CLOUDFRONT_DISTRIBUTION_ID secret provided. Skipping cache invalidation."
+          fi
