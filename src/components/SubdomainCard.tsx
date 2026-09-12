@@ -29,12 +29,12 @@ export function SubdomainCard({ project }: SubdomainCardProps) {
       </h3>
 
       {/* Tagline */}
-      <p className="text-[#555555] text-xs leading-relaxed mb-4">
+      <p className="text-[#888888] text-xs leading-relaxed mb-4">
         {project.tagline}
       </p>
 
       {/* Description — dry one-liner */}
-      <p className="text-[#3a3a3a] text-xs leading-relaxed mb-auto">
+      <p className="text-[#666666] text-xs leading-relaxed mb-auto">
         {project.description}
       </p>
 

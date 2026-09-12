@@ -9,13 +9,13 @@ export function ComingSoonCard() {
 
       <div className="space-y-2 flex-1">
         <div className="flex items-center justify-between py-2 border-b border-[#1e1e1e]">
-          <span className="text-xs font-['JetBrains_Mono'] text-[#3a3a3a]">
+          <span className="text-xs font-['JetBrains_Mono'] text-[#888888]">
             api.bossrod.com
           </span>
           <span className="section-label">planned</span>
         </div>
         <div className="flex items-center justify-between py-2 border-b border-[#1e1e1e]">
-          <span className="text-xs font-['JetBrains_Mono'] text-[#3a3a3a]">
+          <span className="text-xs font-['JetBrains_Mono'] text-[#888888]">
             blog.bossrod.com
           </span>
           <span className="section-label">planned</span>
@@ -23,7 +23,7 @@ export function ComingSoonCard() {
       </div>
 
       {/* Dry comment */}
-      <p className="text-[#2a2a2a] text-[10px] font-['JetBrains_Mono'] mt-4">
+      <p className="text-[#444444] text-[10px] font-['JetBrains_Mono'] mt-4">
         // more coming. eventually.
       </p>
     </BentoCard>

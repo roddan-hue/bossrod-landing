@@ -14,7 +14,7 @@ export interface SubdomainProject {
 export const SUBDOMAINS: SubdomainProject[] = [
   {
     id: 'movies',
-    name: 'Bossrod Movies',
+    name: 'Movies',
     subdomain: 'movies.bossrod.com',
     url: 'https://movies.bossrod.com',
     badge: 'entertainment',
@@ -26,7 +26,7 @@ export const SUBDOMAINS: SubdomainProject[] = [
   },
   {
     id: 'shop',
-    name: 'Bossrod Shop',
+    name: 'TrendShop',
     subdomain: 'shop.bossrod.com',
     url: 'https://shop.bossrod.com',
     badge: 'e-commerce',

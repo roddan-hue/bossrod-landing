@@ -19,21 +19,25 @@ export function App() {
         {/* ── Hero ─────────────────────────────────── */}
         <section className="pt-16 pb-14 border-b border-[#1e1e1e]">
           {/* Domain tag */}
-          <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center gap-2 mb-6">
             <div className="acid-dot" />
             <span className="section-label">bossrod.com</span>
           </div>
 
-          {/* BOSSROD. — massive headline */}
+          {/* bossrod — understated, lowercase, not screaming */}
           <h1
-            className="headline text-[clamp(80px,14vw,160px)] text-[#f0f0f0] leading-none tracking-tight mb-4"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 900 }}
+            className="text-[clamp(40px,6vw,72px)] text-[#d0d0d0] leading-none mb-5"
+            style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontWeight: 700,
+              letterSpacing: '-0.02em',
+            }}
           >
-            BOSSROD.
+            bossrod.
           </h1>
 
-          {/* Tagline — dry, monospace */}
-          <p className="text-[#555555] text-sm font-['JetBrains_Mono']">
+          {/* Tagline — dry, monospace, dim */}
+          <p className="text-[#666666] text-sm font-['JetBrains_Mono']">
             builds things.&nbsp;&nbsp;ships code.&nbsp;&nbsp;bad at interviews.
           </p>
         </section>

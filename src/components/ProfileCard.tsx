@@ -7,7 +7,7 @@ export function ProfileCard() {
 
       <h4 className="headline text-2xl text-[#f0f0f0] mb-3">Rod Daniel B.</h4>
 
-      <p className="text-[#555555] text-xs leading-relaxed mb-4">
+      <p className="text-[#888888] text-xs leading-relaxed mb-4">
         full-stack developer and builder.
         <br />
         learns by shipping and breaking things.
@@ -15,7 +15,7 @@ export function ProfileCard() {
         prefers code over conversation.
       </p>
 
-      <p className="text-[#3a3a3a] text-xs leading-relaxed">
+      <p className="text-[#666666] text-xs leading-relaxed">
         currently: building the bossrod.com ecosystem.
       </p>
     </BentoCard>
