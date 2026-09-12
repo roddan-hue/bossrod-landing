@@ -7,18 +7,8 @@ export interface SubdomainProject {
   tagline: string;
   description: string;
   techStack: string[];
-  accentColor: {
-    border: string;
-    glow: string;
-    badgeBg: string;
-    badgeText: string;
-    button: string;
-  };
-  metrics?: {
-    label: string;
-    value: string;
-  }[];
   previewType: 'movies' | 'shop' | 'generic';
+  // Simplified — no accentColor needed in flat design
 }
 
 export const SUBDOMAINS: SubdomainProject[] = [
@@ -27,56 +17,34 @@ export const SUBDOMAINS: SubdomainProject[] = [
     name: 'Bossrod Movies',
     subdomain: 'movies.bossrod.com',
     url: 'https://movies.bossrod.com',
-    badge: 'Entertainment & Streaming',
-    tagline: 'Cinematic Discovery & Media Intelligence',
+    badge: 'entertainment',
+    tagline: 'cinematic discovery & media intelligence',
     description:
-      'Curated movie catalog, real-time ratings, trailers, and personalized watchlists powered by seamless media tracking.',
-    techStack: ['React', 'TMDB API', 'Tailwind CSS', 'Vite'],
-    accentColor: {
-      border: 'hover:border-purple-500/50',
-      glow: 'rgba(168, 85, 247, 0.15)',
-      badgeBg: 'bg-purple-500/10 border-purple-500/30',
-      badgeText: 'text-purple-400',
-      button: 'bg-purple-600 hover:bg-purple-500 text-white shadow-purple-500/25',
-    },
-    metrics: [
-      { label: 'Catalog', value: '10,000+' },
-      { label: 'API Sync', value: 'Live' },
-    ],
+      'curated movie catalog with real-time ratings, trailers, and watchlist tracking. powered by TMDB.',
+    techStack: ['React', 'Vite', 'TMDB API', 'Tailwind'],
     previewType: 'movies',
   },
   {
     id: 'shop',
-    name: 'Bossrod TrendShop',
+    name: 'Bossrod Shop',
     subdomain: 'shop.bossrod.com',
     url: 'https://shop.bossrod.com',
-    badge: 'Automated E-Commerce',
-    tagline: 'Google Trends & Amazon Affiliate Engine',
+    badge: 'e-commerce',
+    tagline: 'google trends + amazon affiliate engine',
     description:
-      'Real-time geo-localized Google Trends fused with Amazon product intelligence, automated AI summaries, and instant checkout tracking.',
-    techStack: ['React', 'AWS DynamoDB', 'Google Trends', 'Node.js', 'Tailwind'],
-    accentColor: {
-      border: 'hover:border-amber-500/50',
-      glow: 'rgba(245, 158, 11, 0.15)',
-      badgeBg: 'bg-amber-500/10 border-amber-500/30',
-      badgeText: 'text-amber-400',
-      button: 'bg-amber-500 hover:bg-amber-400 text-black font-medium shadow-amber-500/25',
-    },
-    metrics: [
-      { label: 'Data Source', value: 'Google Trends' },
-      { label: 'Storage', value: 'AWS DynamoDB' },
-    ],
+      'real-time geo-localised google trends fused with amazon product data. ai-enriched. automated.',
+    techStack: ['React', 'Node.js', 'AWS DynamoDB', 'SerpAPI'],
     previewType: 'shop',
   },
 ];
 
 export const TECH_STACK = [
-  { name: 'TypeScript', category: 'Language' },
-  { name: 'React', category: 'Frontend' },
-  { name: 'AWS Cloud', category: 'Infra' },
-  { name: 'DynamoDB', category: 'Database' },
-  { name: 'Node.js', category: 'Backend' },
-  { name: 'Tailwind CSS', category: 'Styling' },
+  { name: 'TypeScript', category: 'lang' },
+  { name: 'React', category: 'ui' },
+  { name: 'Node.js', category: 'runtime' },
+  { name: 'AWS Cloud', category: 'infra' },
+  { name: 'DynamoDB', category: 'db' },
+  { name: 'Tailwind', category: 'css' },
 ];
 
 export const SOCIAL_LINKS = {
