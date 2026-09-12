@@ -1,4 +1,3 @@
-import { Header } from './components/Header';
 import { SubdomainCard } from './components/SubdomainCard';
 import { ProfileCard } from './components/ProfileCard';
 import { TechStackCard } from './components/TechStackCard';
@@ -12,9 +11,6 @@ export function App() {
       className="min-h-screen flex flex-col"
       style={{ background: '#0a0a0a', color: '#f0f0f0' }}
     >
-      {/* Nav bar */}
-      <Header />
-
       <main className="flex-1 max-w-6xl w-full mx-auto px-6">
         {/* ── Hero ─────────────────────────────────── */}
         <section className="pt-8 pb-7 border-b border-[#1e1e1e]">

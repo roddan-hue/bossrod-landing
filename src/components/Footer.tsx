@@ -24,15 +24,18 @@ export function Footer() {
     <footer className="w-full border-t border-[#1e1e1e] bg-[#0a0a0a]">
       <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
 
-        {/* Left: copyright */}
-        <span className="section-label">
-          © {new Date().getFullYear()} bossrod · ap-southeast-1
-        </span>
+        {/* Left: nodes status + copyright */}
+        <div className="flex items-center gap-3">
+          <div className="acid-dot" />
+          <span className="section-label">02 nodes online</span>
+          <span className="text-[#1e1e1e]">·</span>
+          <span className="section-label">© {new Date().getFullYear()} bossrod</span>
+        </div>
 
         {/* Center: email copy */}
         <button
           onClick={handleCopyEmail}
-          className="flex items-center gap-2 text-[10px] font-['JetBrains_Mono'] text-[#3a3a3a] hover:text-[#c8f000] transition-colors cursor-pointer group"
+          className="flex items-center gap-2 text-[10px] font-['JetBrains_Mono'] text-[#888888] hover:text-[#c8f000] transition-colors cursor-pointer group"
         >
           {copied ? (
             <Check className="w-3 h-3 text-[#c8f000]" />
