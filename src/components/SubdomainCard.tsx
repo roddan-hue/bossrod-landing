@@ -10,7 +10,7 @@ export function SubdomainCard({ project }: SubdomainCardProps) {
   return (
     <BentoCard className="min-h-[320px] group">
       {/* Top: category label + subdomain link */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-3">
         <span className="section-label text-[#c8f000]">{project.badge.toLowerCase()}</span>
         <a
           href={project.url}
@@ -24,12 +24,12 @@ export function SubdomainCard({ project }: SubdomainCardProps) {
       </div>
 
       {/* Project name — big Barlow headline */}
-      <h3 className="headline text-4xl md:text-5xl text-[#f0f0f0] leading-none mb-2">
+      <h3 className="headline text-4xl md:text-5xl text-[#f0f0f0] leading-none mb-1">
         {project.name}
       </h3>
 
       {/* Tagline */}
-      <p className="text-[#888888] text-xs leading-relaxed mb-4">
+      <p className="text-[#888888] text-xs leading-relaxed mb-2">
         {project.tagline}
       </p>
 
@@ -39,7 +39,7 @@ export function SubdomainCard({ project }: SubdomainCardProps) {
       </p>
 
       {/* Divider */}
-      <hr className="divider my-4" />
+      <hr className="divider my-3" />
 
       {/* Bottom: tech stack + launch */}
       <div className="flex items-center justify-between gap-3">
