@@ -10,7 +10,7 @@ export function ComingSoonCard() {
       <div className="space-y-2 flex-1">
         <div className="flex items-center justify-between py-2 border-b border-[#1e1e1e]">
           <span className="text-xs font-['JetBrains_Mono'] text-[#888888]">
-            api.bossrod.com
+            labs.bossrod.com
           </span>
           <span className="section-label">planned</span>
         </div>

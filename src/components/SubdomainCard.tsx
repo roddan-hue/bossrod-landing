@@ -15,8 +15,8 @@ export function SubdomainCard({ project }: SubdomainCardProps) {
         <a
           href={project.url}
           target="_blank"
-          rel="noreferrer"
-          className="section-label flex items-center gap-1 text-[#3a3a3a] hover:text-[#c8f000] transition-colors"
+          rel="noopener noreferrer"
+          className="section-label flex items-center gap-1 text-[#888888] hover:text-[#c8f000] transition-colors"
         >
           <span>{project.subdomain}</span>
           <ArrowUpRight className="w-3 h-3" />
@@ -54,7 +54,7 @@ export function SubdomainCard({ project }: SubdomainCardProps) {
         <a
           href={project.url}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="btn-acid shrink-0"
         >
           launch

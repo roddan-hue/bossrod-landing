@@ -5,7 +5,7 @@ export function ProfileCard() {
     <BentoCard id="about">
       <span className="section-label text-[#c8f000] mb-3">// about</span>
 
-      <h4 className="headline text-2xl text-[#f0f0f0] mb-2">Rod Daniel B.</h4>
+      <h4 className="headline text-2xl text-[#f0f0f0] mb-2">ROD B.</h4>
 
       <p className="text-[#888888] text-xs leading-relaxed mb-3">
         full-stack developer and builder.
