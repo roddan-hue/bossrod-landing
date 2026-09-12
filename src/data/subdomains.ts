@@ -17,9 +17,9 @@ export const SUBDOMAINS: SubdomainProject[] = [
     subdomain: 'movies.bossrod.com',
     url: 'https://movies.bossrod.com',
     badge: 'entertainment',
-    tagline: 'cinematic discovery & media intelligence',
+    tagline: 'real-time popular films & trend scoring',
     description:
-      'curated movie catalog with real-time ratings, trailers, and watchlist tracking. powered by TMDB.',
+      'real-time directory of popular movies with search-driven trend scoring. focused strictly on data—no links, no trailers.',
     techStack: ['React', 'Vite', 'TMDB API', 'Tailwind'],
     previewType: 'movies',
   },
