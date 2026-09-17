@@ -4,7 +4,7 @@ import { TECH_STACK } from '../data/subdomains';
 export function TechStackCard() {
   return (
     <BentoCard id="stack">
-      <span className="section-label text-[#c8f000] mb-4">// stack</span>
+      <span className="section-label text-[#c8f000] mb-2">// stack</span>
 
       <div className="grid grid-cols-2 gap-1.5 flex-1">
         {TECH_STACK.map((tech) => (
