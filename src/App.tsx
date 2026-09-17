@@ -1,11 +1,48 @@
+import { useState, useEffect } from 'react';
 import { SubdomainCard } from './components/SubdomainCard';
 import { ProfileCard } from './components/ProfileCard';
 import { TechStackCard } from './components/TechStackCard';
 import { ComingSoonCard } from './components/ComingSoonCard';
 import { Footer } from './components/Footer';
+import { SecurityGate } from './components/dashboard/SecurityGate';
+import { DashboardModal } from './components/dashboard/DashboardModal';
 import { SUBDOMAINS } from './data/subdomains';
 
 export function App() {
+  const [isSecurityGateOpen, setIsSecurityGateOpen] = useState(false);
+  const [isDashboardOpen, setIsDashboardOpen] = useState(false);
+
+  const handleOpenDashboardTrigger = () => {
+    const token = sessionStorage.getItem('bossrod_auth_token');
+    if (token) {
+      setIsDashboardOpen(true);
+    } else {
+      setIsSecurityGateOpen(true);
+    }
+  };
+
+  const handleAuthenticated = () => {
+    setIsSecurityGateOpen(false);
+    setIsDashboardOpen(true);
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('bossrod_auth_token');
+    setIsDashboardOpen(false);
+  };
+
+  // Keyboard shortcut: Ctrl + Shift + D to open monitor
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'd') {
+        e.preventDefault();
+        handleOpenDashboardTrigger();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <div
       className="min-h-screen flex flex-col"
@@ -43,11 +80,11 @@ export function App() {
           {/* Section header row */}
           <div className="flex items-center justify-between mb-4">
             <span className="section-label">// active deployments</span>
-            <span className="section-label">02&nbsp;nodes&nbsp;online</span>
+            <span className="section-label">04&nbsp;nodes&nbsp;online</span>
           </div>
 
-          {/* Two large project cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+          {/* 4 project cards in a 2x2 grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
             {SUBDOMAINS.map((project) => (
               <SubdomainCard key={project.id} project={project} />
             ))}
@@ -66,7 +103,22 @@ export function App() {
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer onOpenDashboard={handleOpenDashboardTrigger} />
+
+      {/* Security Gate Modal */}
+      {isSecurityGateOpen && (
+        <SecurityGate
+          onAuthenticated={handleAuthenticated}
+          onCancel={() => setIsSecurityGateOpen(false)}
+        />
+      )}
+
+      {/* Telemetry Dashboard Modal */}
+      <DashboardModal
+        isOpen={isDashboardOpen}
+        onClose={() => setIsDashboardOpen(false)}
+        onLogout={handleLogout}
+      />
     </div>
   );
 }

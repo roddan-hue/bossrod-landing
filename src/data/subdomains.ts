@@ -7,7 +7,7 @@ export interface SubdomainProject {
   tagline: string;
   description: string;
   techStack: string[];
-  previewType: 'movies' | 'shop' | 'generic';
+  previewType: 'movies' | 'shop' | 'quizme' | 'mahjong' | 'generic';
 }
 
 export const SUBDOMAINS: SubdomainProject[] = [
@@ -35,15 +35,39 @@ export const SUBDOMAINS: SubdomainProject[] = [
     techStack: ['React', 'Node.js', 'REST APIs', 'Tailwind'],
     previewType: 'shop',
   },
+  {
+    id: 'quizme',
+    name: 'QuizMe',
+    subdomain: 'quizme.bossrod.com',
+    url: 'https://quizme.bossrod.com',
+    badge: 'ai / education',
+    tagline: 'ai assessment & exam simulator',
+    description:
+      'automated question synthesis powered by gemini. multi-format testing, document upload parsing, and timed exam simulations.',
+    techStack: ['Next.js', 'TypeScript', 'Gemini AI', 'Tailwind'],
+    previewType: 'quizme',
+  },
+  {
+    id: 'mahjong',
+    name: 'Mahjong',
+    subdomain: 'mahjong.bossrod.com',
+    url: 'https://mahjong.bossrod.com',
+    badge: 'multiplayer / gaming',
+    tagline: 'real-time 4-player multiplayer & bot lobbies',
+    description:
+      'browser-based mahjong engine. instant websocket rooms, shareable invite links, and serverless matchmaking.',
+    techStack: ['React', 'TypeScript', 'WebSockets', 'AWS Serverless'],
+    previewType: 'mahjong',
+  },
 ];
 
 export const TECH_STACK = [
   { name: 'TypeScript', category: 'lang' },
   { name: 'React', category: 'ui' },
+  { name: 'Next.js', category: 'framework' },
   { name: 'Node.js', category: 'runtime' },
-  { name: 'REST APIs', category: 'api' },
+  { name: 'WebSockets', category: 'real-time' },
   { name: 'Tailwind', category: 'css' },
-  { name: 'Git', category: 'vcs' },
 ];
 
 export const SOCIAL_LINKS = {
