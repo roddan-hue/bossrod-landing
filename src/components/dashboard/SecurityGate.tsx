@@ -7,7 +7,7 @@ interface SecurityGateProps {
 }
 
 // Default fallback SHA-256 of "bossrod" if no env variable is provided
-const DEFAULT_MASTER_HASH = "b723528b97d2e0573e04e9c704f08f8bb1a4a4b27df77df8fa5b4b1a47dfd635";
+const DEFAULT_MASTER_HASH = "c6d0f9c2a8fd6b182f6eb132a42540d0ff8848b67cb9c6fd45e888d291ae505e";
 
 // Can be overridden via VITE_ADMIN_PASS_HASH in .env / .env.local
 const CONFIGURED_HASH = import.meta.env.VITE_ADMIN_PASS_HASH || DEFAULT_MASTER_HASH;
