@@ -3,18 +3,31 @@ import { SOCIAL_LINKS } from '../data/subdomains';
 
 interface FooterProps {
   onOpenDashboard?: () => void;
+  onOpenPrivacy?: () => void;
 }
 
-export function Footer({ onOpenDashboard }: FooterProps) {
+export function Footer({ onOpenDashboard, onOpenPrivacy }: FooterProps) {
   return (
     <footer className="w-full border-t border-[#1e1e1e] bg-[#0a0a0a]">
       <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-        {/* Left: nodes status + copyright + telemetry terminal link */}
+        {/* Left: nodes status + copyright + telemetry terminal link + privacy */}
         <div className="flex items-center flex-wrap gap-3">
           <div className="acid-dot" />
           <span className="section-label">04 nodes online</span>
           <span className="text-[#1e1e1e]">·</span>
           <span className="section-label">© {new Date().getFullYear()} bossrod</span>
+          {onOpenPrivacy && (
+            <>
+              <span className="text-[#1e1e1e]">·</span>
+              <button
+                onClick={onOpenPrivacy}
+                className="section-label text-[#555555] hover:text-[#c8f000] cursor-pointer transition-colors"
+                title="Privacy Policy & AdSense Disclosures"
+              >
+                // privacy
+              </button>
+            </>
+          )}
           {onOpenDashboard && (
             <>
               <span className="text-[#1e1e1e]">·</span>

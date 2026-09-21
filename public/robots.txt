@@ -1,0 +1,13 @@
+# robots.txt for bossrod.com
+User-agent: *
+Allow: /
+
+# Google AdSense Crawler
+User-agent: Mediapartners-Google
+Allow: /
+
+# Google Search Crawler
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://bossrod.com/sitemap.xml

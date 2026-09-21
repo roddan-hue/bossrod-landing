@@ -6,11 +6,13 @@ import { ComingSoonCard } from './components/ComingSoonCard';
 import { Footer } from './components/Footer';
 import { SecurityGate } from './components/dashboard/SecurityGate';
 import { DashboardModal } from './components/dashboard/DashboardModal';
+import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
 import { SUBDOMAINS } from './data/subdomains';
 
 export function App() {
   const [isSecurityGateOpen, setIsSecurityGateOpen] = useState(false);
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
   const handleOpenDashboardTrigger = () => {
     const token = sessionStorage.getItem('bossrod_auth_token');
@@ -103,7 +105,10 @@ export function App() {
       </main>
 
       {/* Footer */}
-      <Footer onOpenDashboard={handleOpenDashboardTrigger} />
+      <Footer
+        onOpenDashboard={handleOpenDashboardTrigger}
+        onOpenPrivacy={() => setIsPrivacyOpen(true)}
+      />
 
       {/* Security Gate Modal */}
       {isSecurityGateOpen && (
@@ -118,6 +123,12 @@ export function App() {
         isOpen={isDashboardOpen}
         onClose={() => setIsDashboardOpen(false)}
         onLogout={handleLogout}
+      />
+
+      {/* Privacy Policy Modal */}
+      <PrivacyPolicyModal
+        isOpen={isPrivacyOpen}
+        onClose={() => setIsPrivacyOpen(false)}
       />
     </div>
   );

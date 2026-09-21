@@ -6,10 +6,11 @@ interface SecurityGateProps {
   onCancel: () => void;
 }
 
-// SHA-256 of "bossrod"
-const MASTER_HASH_BOSSROD = "b723528b97d2e0573e04e9c704f08f8bb1a4a4b27df77df8fa5b4b1a47dfd635";
-// SHA-256 of "bossrod2026"
-const MASTER_HASH_2026 = "170669226cbcf08f75c88fa58801556a3e264627d42cf38a082725d2bce3ce35";
+// Default fallback SHA-256 of "bossrod" if no env variable is provided
+const DEFAULT_MASTER_HASH = "b723528b97d2e0573e04e9c704f08f8bb1a4a4b27df77df8fa5b4b1a47dfd635";
+
+// Can be overridden via VITE_ADMIN_PASS_HASH in .env / .env.local
+const CONFIGURED_HASH = import.meta.env.VITE_ADMIN_PASS_HASH || DEFAULT_MASTER_HASH;
 
 async function sha256(text: string): Promise<string> {
   const msgUint8 = new TextEncoder().encode(text.trim().toLowerCase());
@@ -52,8 +53,8 @@ export function SecurityGate({ onAuthenticated, onCancel }: SecurityGateProps) {
 
     try {
       const hashed = await sha256(passphrase);
-      // Validates "bossrod" or "bossrod2026"
-      if (hashed === MASTER_HASH_BOSSROD || hashed === MASTER_HASH_2026 || passphrase === 'bossrod') {
+      // Strictly matches configured SHA-256 hash (no plaintext comparison)
+      if (hashed === CONFIGURED_HASH) {
         sessionStorage.setItem('bossrod_auth_token', Date.now().toString());
         onAuthenticated();
       } else {
@@ -61,10 +62,10 @@ export function SecurityGate({ onAuthenticated, onCancel }: SecurityGateProps) {
         setAttempts(nextAttempts);
 
         if (nextAttempts >= 5) {
-          const lockTime = Date.now() + 30 * 1000; // 30 second lockout
+          const lockTime = Date.now() + 60 * 1000; // 60 second lockout
           setLockedOutUntil(lockTime);
-          setRemainingLockSeconds(30);
-          setError('maximum failed attempts exceeded. terminal locked for 30s.');
+          setRemainingLockSeconds(60);
+          setError('maximum failed attempts exceeded. terminal locked for 60s.');
         } else {
           setError(`access denied. invalid clearance key (${5 - nextAttempts} attempts left).`);
         }
@@ -116,7 +117,7 @@ export function SecurityGate({ onAuthenticated, onCancel }: SecurityGateProps) {
                 value={passphrase}
                 onChange={(e) => setPassphrase(e.target.value)}
                 disabled={Boolean(lockedOutUntil)}
-                placeholder="passkey (hint: bossrod)"
+                placeholder="clearance passkey"
                 autoFocus
                 className="w-full bg-[#0a0a0a] border border-[#1e1e1e] focus:border-[#c8f000] px-3 py-2.5 text-xs text-[#f0f0f0] font-['JetBrains_Mono'] outline-none transition-colors disabled:opacity-50"
               />
