@@ -68,10 +68,24 @@ resource "aws_lambda_function_url" "metrics_url" {
   cors {
     allow_credentials = false
     allow_origins     = ["*"]
-    allow_methods     = ["GET", "OPTIONS"]
+    allow_methods     = ["*"]
     allow_headers     = ["content-type", "x-api-key"]
-    max_age           = 86400
   }
+}
+
+resource "aws_lambda_permission" "metrics_url_permission" {
+  statement_id           = "FunctionURLAllowPublicAccess"
+  action                 = "lambda:InvokeFunctionUrl"
+  function_name          = aws_lambda_function.metrics_api.function_name
+  principal              = "*"
+  function_url_auth_type = "NONE"
+}
+
+resource "aws_lambda_permission" "metrics_invoke_permission" {
+  statement_id  = "FunctionURLAllowPublicInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.metrics_api.function_name
+  principal     = "*"
 }
 
 output "metrics_function_url" {

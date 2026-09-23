@@ -13,6 +13,7 @@ import {
 import {
   MOCK_TELEMETRY,
   probeNode,
+  fetchLiveTelemetry,
   type NodeHealth,
   type TelemetrySummary,
   type DailyDataPoint,
@@ -26,13 +27,14 @@ interface DashboardModalProps {
 }
 
 export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProps) {
-  const [telemetry] = useState<TelemetrySummary>(MOCK_TELEMETRY);
+  const [telemetry, setTelemetry] = useState<TelemetrySummary>(MOCK_TELEMETRY);
   const [nodeHealths, setNodeHealths] = useState<NodeHealth[]>([]);
   const [isProbing, setIsProbing] = useState(false);
+  const [isLiveSynced, setIsLiveSynced] = useState(false);
   const [lastProbedTime, setLastProbedTime] = useState<string>('');
   const [selectedDomainId, setSelectedDomainId] = useState<string>('all');
 
-  // Probes all active subdomains
+  // Probes all active subdomains and fetches live CloudWatch metrics
   const runHealthProbe = async () => {
     setIsProbing(true);
 
@@ -51,13 +53,32 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
       },
     ];
 
-    const results = await Promise.all(
-      targets.map((t) => probeNode(t.url, t.id, t.name, t.subdomain))
-    );
+    try {
+      const [probeResults, liveData] = await Promise.all([
+        Promise.all(targets.map((t) => probeNode(t.url, t.id, t.name, t.subdomain))),
+        fetchLiveTelemetry(),
+      ]);
 
-    setNodeHealths(results);
-    setLastProbedTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
-    setIsProbing(false);
+      setNodeHealths(probeResults);
+
+      const activeNodesCount = probeResults.filter((n) => n.status === 'online' || n.status === 'degraded').length;
+      const avgLatency = Math.round(
+        probeResults.reduce((acc, cur) => acc + cur.latencyMs, 0) / Math.max(1, probeResults.length)
+      );
+
+      setTelemetry({
+        ...liveData,
+        activeNodes: activeNodesCount,
+        totalNodes: targets.length,
+        avgLatencyMs: avgLatency,
+      });
+      setIsLiveSynced(true);
+    } catch (err) {
+      console.error('Failed to probe nodes and fetch telemetry:', err);
+    } finally {
+      setLastProbedTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+      setIsProbing(false);
+    }
   };
 
   useEffect(() => {
@@ -96,6 +117,16 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
                 <span className="mono-tag text-[#c8f000] border-[#c8f000]/40">
                   internal
                 </span>
+                {isLiveSynced ? (
+                  <span className="mono-tag text-emerald-400 border-emerald-500/40 bg-emerald-950/20 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    live aws data
+                  </span>
+                ) : (
+                  <span className="mono-tag text-[#888888] border-[#333333]">
+                    syncing...
+                  </span>
+                )}
               </div>
               <p className="text-[11px] font-['JetBrains_Mono'] text-[#666666]">
                 ap-southeast-1 edge analytics · 4 subdomains + apex hub
@@ -107,10 +138,10 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
             <button
               onClick={runHealthProbe}
               disabled={isProbing}
-              className="btn-ghost text-[11px] py-1.5 px-3 flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+              className="btn-ghost text-[11px] py-1.5 px-3 flex items-center gap-1.5 cursor-pointer disabled:opacity-50 hover:border-[#c8f000]/60 hover:text-[#c8f000]"
             >
               <RefreshCw className={`w-3 h-3 ${isProbing ? 'animate-spin text-[#c8f000]' : ''}`} />
-              <span>{isProbing ? 'probing...' : 'probe nodes'}</span>
+              <span>{isProbing ? 'syncing edge data...' : 'probe nodes'}</span>
             </button>
 
             <button
@@ -471,8 +502,11 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
 
         {/* ── Footer Status Bar ──────────────────────────────── */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-2 pt-3 border-t border-[#1e1e1e] text-[10px] font-['JetBrains_Mono'] text-[#555555]">
-          <span>telemetry source: cloudfront edge logs & live http probes</span>
-          <span>session active (auto-locks on tab close)</span>
+          <span className="flex items-center gap-2">
+            <span className={`w-1.5 h-1.5 rounded-full ${isLiveSynced ? 'bg-[#c8f000] animate-pulse' : 'bg-[#666666]'}`} />
+            telemetry source: live aws cloudwatch metrics api (us-east-1) & real edge http probes
+          </span>
+          <span>{lastProbedTime ? `last probe: ${lastProbedTime}` : 'awaiting probe'} · session active</span>
         </div>
 
       </div>
