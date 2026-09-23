@@ -52,16 +52,24 @@ export interface TelemetrySummary {
   dailyTrend: DailyDataPoint[];
 }
 
-// 7-day historical dates
-const DAYS_OF_WEEK = [
-  { date: 'Sep 11', day: 'Thu' },
-  { date: 'Sep 12', day: 'Fri' },
-  { date: 'Sep 13', day: 'Sat' },
-  { date: 'Sep 14', day: 'Sun' },
-  { date: 'Sep 15', day: 'Mon' },
-  { date: 'Sep 16', day: 'Tue' },
-  { date: 'Sep 17', day: 'Today' },
-];
+// 7-day historical dates computed dynamically relative to today
+function generatePast7Days() {
+  const days: { date: string; day: string }[] = [];
+  const now = new Date();
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
+    const month = d.toLocaleDateString('en-US', { month: 'short' });
+    const dayNum = d.toLocaleDateString('en-US', { day: 'numeric' });
+    const weekday = i === 0 ? 'Today' : d.toLocaleDateString('en-US', { weekday: 'short' });
+    days.push({
+      date: `${month} ${dayNum}`,
+      day: weekday,
+    });
+  }
+  return days;
+}
+
+const DAYS_OF_WEEK = generatePast7Days();
 
 export const METRICS_API_URL = 'https://spnryb7bgbla7ynspdlux5l7we0fqaov.lambda-url.ap-southeast-1.on.aws/';
 
@@ -102,15 +110,12 @@ export const MOCK_TELEMETRY: TelemetrySummary = {
       sharePercentage: 54.1,
       bandwidthMb: 44.4,
       topCountry: '🇵🇭 PH (74%)',
-      dailyTrend: [
-        { date: 'Sep 11', day: 'Thu', requests: 0, visitors: 0 },
-        { date: 'Sep 12', day: 'Fri', requests: 0, visitors: 0 },
-        { date: 'Sep 13', day: 'Sat', requests: 0, visitors: 0 },
-        { date: 'Sep 14', day: 'Sun', requests: 0, visitors: 0 },
-        { date: 'Sep 15', day: 'Mon', requests: 153, visitors: 28 }, // Day of initial deploy
-        { date: 'Sep 16', day: 'Tue', requests: 1266, visitors: 184 },
-        { date: 'Sep 17', day: 'Today', requests: 310, visitors: 45 },
-      ],
+      dailyTrend: DAYS_OF_WEEK.map((d, index) => ({
+        date: d.date,
+        day: d.day,
+        requests: [0, 0, 0, 0, 153, 1266, 310][index],
+        visitors: [0, 0, 0, 0, 28, 184, 45][index],
+      })),
     },
     {
       id: 'hub',
@@ -121,15 +126,12 @@ export const MOCK_TELEMETRY: TelemetrySummary = {
       sharePercentage: 38.4,
       bandwidthMb: 12.8,
       topCountry: '🌐 Global',
-      dailyTrend: [
-        { date: 'Sep 11', day: 'Thu', requests: 2496, visitors: 285 },
-        { date: 'Sep 12', day: 'Fri', requests: 1291, visitors: 198 },
-        { date: 'Sep 13', day: 'Sat', requests: 1727, visitors: 241 },
-        { date: 'Sep 14', day: 'Sun', requests: 1131, visitors: 182 },
-        { date: 'Sep 15', day: 'Mon', requests: 1201, visitors: 194 },
-        { date: 'Sep 16', day: 'Tue', requests: 899, visitors: 162 },
-        { date: 'Sep 17', day: 'Today', requests: 940, visitors: 170 },
-      ],
+      dailyTrend: DAYS_OF_WEEK.map((d, index) => ({
+        date: d.date,
+        day: d.day,
+        requests: [2496, 1291, 1727, 1131, 1201, 899, 940][index],
+        visitors: [285, 198, 241, 182, 194, 162, 170][index],
+      })),
     },
     {
       id: 'quizme',
@@ -140,15 +142,12 @@ export const MOCK_TELEMETRY: TelemetrySummary = {
       sharePercentage: 3.4,
       bandwidthMb: 2.1,
       topCountry: '🇦🇺 AU (42%)',
-      dailyTrend: [
-        { date: 'Sep 11', day: 'Thu', requests: 0, visitors: 0 },
-        { date: 'Sep 12', day: 'Fri', requests: 381, visitors: 65 },
-        { date: 'Sep 13', day: 'Sat', requests: 909, visitors: 142 },
-        { date: 'Sep 14', day: 'Sun', requests: 336, visitors: 58 },
-        { date: 'Sep 15', day: 'Mon', requests: 369, visitors: 62 },
-        { date: 'Sep 16', day: 'Tue', requests: 80, visitors: 32 },
-        { date: 'Sep 17', day: 'Today', requests: 95, visitors: 36 },
-      ],
+      dailyTrend: DAYS_OF_WEEK.map((d, index) => ({
+        date: d.date,
+        day: d.day,
+        requests: [0, 381, 909, 336, 369, 80, 95][index],
+        visitors: [0, 65, 142, 58, 62, 32, 36][index],
+      })),
     },
     {
       id: 'movies',
@@ -159,15 +158,12 @@ export const MOCK_TELEMETRY: TelemetrySummary = {
       sharePercentage: 3.1,
       bandwidthMb: 6.4,
       topCountry: '🇦🇺 AU (38%)',
-      dailyTrend: [
-        { date: 'Sep 11', day: 'Thu', requests: 97, visitors: 31 },
-        { date: 'Sep 12', day: 'Fri', requests: 443, visitors: 78 },
-        { date: 'Sep 13', day: 'Sat', requests: 51, visitors: 22 },
-        { date: 'Sep 14', day: 'Sun', requests: 63, visitors: 25 },
-        { date: 'Sep 15', day: 'Mon', requests: 34, visitors: 18 },
-        { date: 'Sep 16', day: 'Tue', requests: 72, visitors: 28 },
-        { date: 'Sep 17', day: 'Today', requests: 48, visitors: 20 },
-      ],
+      dailyTrend: DAYS_OF_WEEK.map((d, index) => ({
+        date: d.date,
+        day: d.day,
+        requests: [97, 443, 51, 63, 34, 72, 48][index],
+        visitors: [31, 78, 22, 25, 18, 28, 20][index],
+      })),
     },
     {
       id: 'shop',
@@ -178,15 +174,12 @@ export const MOCK_TELEMETRY: TelemetrySummary = {
       sharePercentage: 1.0,
       bandwidthMb: 1.8,
       topCountry: '🇺🇸 US (52%)',
-      dailyTrend: [
-        { date: 'Sep 11', day: 'Thu', requests: 927, visitors: 142 },
-        { date: 'Sep 12', day: 'Fri', requests: 310, visitors: 64 },
-        { date: 'Sep 13', day: 'Sat', requests: 84, visitors: 28 },
-        { date: 'Sep 14', day: 'Sun', requests: 380, visitors: 71 },
-        { date: 'Sep 15', day: 'Mon', requests: 520, visitors: 94 },
-        { date: 'Sep 16', day: 'Tue', requests: 25, visitors: 12 },
-        { date: 'Sep 17', day: 'Today', requests: 35, visitors: 16 },
-      ],
+      dailyTrend: DAYS_OF_WEEK.map((d, index) => ({
+        date: d.date,
+        day: d.day,
+        requests: [927, 310, 84, 380, 520, 25, 35][index],
+        visitors: [142, 64, 28, 71, 94, 12, 16][index],
+      })),
     },
   ],
   geolocations: [
@@ -301,29 +294,28 @@ export async function fetchLiveTelemetry(apiUrl: string = METRICS_API_URL): Prom
       throw new Error('Invalid telemetry payload format');
     }
 
-    // 1. Gather all unique timestamps across all queries to construct a unified chronological 7-day timeline
-    const allTimestampMap = new Map<string, number>();
-    for (const key of Object.keys(data.metrics)) {
-      const metric = data.metrics[key];
-      for (const ts of metric.timestamps || []) {
-        allTimestampMap.set(ts, new Date(ts).getTime());
-      }
+    // 1. Construct unified chronological 7-day timeline based on the calendar days up to today
+    const now = new Date();
+    const timeline: { isoDate: string; date: string; day: string }[] = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(now.getTime() - i * 86400000);
+      const isoDate = d.toISOString().slice(0, 10);
+      const monthStr = d.toLocaleDateString('en-US', { month: 'short' });
+      const dayNum = d.toLocaleDateString('en-US', { day: 'numeric' });
+      const dayName = i === 0 ? 'Today' : d.toLocaleDateString('en-US', { weekday: 'short' });
+      timeline.push({ isoDate, date: `${monthStr} ${dayNum}`, day: dayName });
     }
 
-    // Sort timestamps oldest to newest
-    const sortedTimestamps = Array.from(allTimestampMap.keys()).sort(
-      (a, b) => (allTimestampMap.get(a) || 0) - (allTimestampMap.get(b) || 0)
-    );
-
-    // Keep the most recent 7 timestamps
-    const recentTimestamps = sortedTimestamps.slice(-7);
-
-    // Helper to get value for a metric on a timestamp
-    const getMetricVal = (metricKey: string, targetTs: string): number => {
+    // Helper to get metric value matching a calendar day (YYYY-MM-DD)
+    const getMetricVal = (metricKey: string, isoDate: string): number => {
       const m = data.metrics[metricKey];
       if (!m || !m.timestamps || !m.values) return 0;
-      const idx = m.timestamps.indexOf(targetTs);
-      return idx >= 0 ? Math.round(m.values[idx] || 0) : 0;
+      for (let i = 0; i < m.timestamps.length; i++) {
+        if (m.timestamps[i].slice(0, 10) === isoDate) {
+          return Math.round(m.values[i] || 0);
+        }
+      }
+      return 0;
     };
 
     // Helper to get total bytes across all timestamps for bandwidth calculation
@@ -333,21 +325,6 @@ export async function fetchLiveTelemetry(apiUrl: string = METRICS_API_URL): Prom
       return m.values.reduce((sum, val) => sum + val, 0);
     };
 
-    // Format timestamps into DailyDataPoint
-    const formatDayInfo = (ts: string, isLast: boolean) => {
-      const d = new Date(ts);
-      const monthStr = d.toLocaleDateString('en-US', { month: 'short' });
-      const dayNum = d.toLocaleDateString('en-US', { day: 'numeric' });
-      const dayName = isLast ? 'Today' : d.toLocaleDateString('en-US', { weekday: 'short' });
-      return { date: `${monthStr} ${dayNum}`, day: dayName };
-    };
-
-    // Build timeline descriptors
-    const timeline = recentTimestamps.map((ts, idx) => {
-      const isLast = idx === recentTimestamps.length - 1;
-      return { ts, ...formatDayInfo(ts, isLast) };
-    });
-
     // 2. Build subdomain breakdown
     let totalEcosystemRequests24h = 0;
     let totalEcosystemVisitors24h = 0;
@@ -355,7 +332,7 @@ export async function fetchLiveTelemetry(apiUrl: string = METRICS_API_URL): Prom
     const subdomains: SubdomainTraffic[] = data.distributions.map((d) => {
       // Calculate 7-day trend for this domain
       const dailyTrend: DailyDataPoint[] = timeline.map((t) => {
-        const reqs = getMetricVal(`req_${d.id}`, t.ts);
+        const reqs = getMetricVal(`req_${d.id}`, t.isoDate);
         const visitors = reqs > 0 ? Math.max(1, Math.round(reqs / 5.4)) : 0;
         return {
           date: t.date,
@@ -365,9 +342,11 @@ export async function fetchLiveTelemetry(apiUrl: string = METRICS_API_URL): Prom
         };
       });
 
-      // Latest 24h requests is the last entry in the timeline
-      const latest24hReqs = dailyTrend.length > 0 ? dailyTrend[dailyTrend.length - 1].requests : 0;
-      const latest24hVisitors = dailyTrend.length > 0 ? dailyTrend[dailyTrend.length - 1].visitors : 0;
+      // Latest 24h requests: use latest non-zero day (today or yesterday)
+      const todayReqs = dailyTrend[6]?.requests || 0;
+      const yesterdayReqs = dailyTrend[5]?.requests || 0;
+      const latest24hReqs = todayReqs > 0 ? todayReqs : yesterdayReqs;
+      const latest24hVisitors = latest24hReqs > 0 ? Math.max(1, Math.round(latest24hReqs / 5.4)) : 0;
 
       totalEcosystemRequests24h += latest24hReqs;
       totalEcosystemVisitors24h += latest24hVisitors;

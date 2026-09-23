@@ -3,7 +3,7 @@ const { CloudWatchClient, GetMetricDataCommand } = require('@aws-sdk/client-clou
 const cw = new CloudWatchClient({ region: 'us-east-1' });
 
 const DISTRIBUTIONS = [
-  { id: 'mahjong', name: 'Visayan Mahjong', subdomain: 'mahjong.bossrod.com', distId: 'E384N8OGBWO7XK' },
+  { id: 'mahjong', name: 'Mahjong', subdomain: 'mahjong.bossrod.com', distId: 'E384N8OGBWO7XK' },
   { id: 'quizme', name: 'QuizMe', subdomain: 'quizme.bossrod.com', distId: 'E20XMOENAFE9MD' },
   { id: 'movies', name: 'Movies', subdomain: 'movies.bossrod.com', distId: 'E3JR6BCQOSBSWH' },
   { id: 'shop', name: 'TrendShop', subdomain: 'shop.bossrod.com', distId: 'E950R085441RK' },
@@ -13,9 +13,6 @@ const DISTRIBUTIONS = [
 exports.handler = async (event) => {
   const headers = {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, x-api-key',
   };
 
   if (event.requestContext?.http?.method === 'OPTIONS') {
