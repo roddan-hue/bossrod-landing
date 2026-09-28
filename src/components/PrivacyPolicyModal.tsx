@@ -108,13 +108,20 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
             </p>
           </div>
 
-          {/* Section 5: Updates */}
+          {/* Section 5: Updates & Contact */}
           <div className="space-y-1.5">
             <h4 className="text-[#f0f0f0] font-bold text-xs uppercase tracking-wider">
               5. Policy Updates & Contact
             </h4>
             <p>
-              We may update this policy periodically to maintain compliance with legal requirements and ad network guidelines. Inquiries regarding this policy can be submitted through our GitHub repository.
+              We may update this policy periodically to maintain compliance with legal requirements and ad network guidelines. Inquiries regarding this policy can be submitted via email to{' '}
+              <a href="mailto:contact@bossrod.com" className="text-[#c8f000] underline">
+                contact@bossrod.com
+              </a>{' '}
+              or through our GitHub repository. A permanent static copy is always available at{' '}
+              <a href="/privacy.html" className="text-[#c8f000] underline">
+                /privacy.html
+              </a>.
             </p>
           </div>
         </div>

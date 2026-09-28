@@ -1,3 +1,2 @@
-# Google AdSense authorized digital sellers (ads.txt) for bossrod.com and subdomains
-# Replace pub-XXXXXXXXXXXXXXXX with your actual AdSense Publisher ID
+# Google AdSense authorized digital sellers (ads.txt) for bossrod.com
 google.com, pub-2774195813326441, DIRECT, f08c47fec0942fa0

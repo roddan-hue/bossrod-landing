@@ -4,30 +4,59 @@ import { SOCIAL_LINKS } from '../data/subdomains';
 interface FooterProps {
   onOpenDashboard?: () => void;
   onOpenPrivacy?: () => void;
+  onOpenTerms?: () => void;
 }
 
-export function Footer({ onOpenDashboard, onOpenPrivacy }: FooterProps) {
+export function Footer({ onOpenDashboard, onOpenPrivacy, onOpenTerms }: FooterProps) {
   return (
     <footer className="w-full border-t border-[#1e1e1e] bg-[#0a0a0a]">
       <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-        {/* Left: nodes status + copyright + telemetry terminal link + privacy */}
+        {/* Left: nodes status + copyright + telemetry terminal link + privacy + terms */}
         <div className="flex items-center flex-wrap gap-3">
           <div className="acid-dot" />
           <span className="section-label">04 nodes online</span>
           <span className="text-[#1e1e1e]">·</span>
           <span className="section-label">© {new Date().getFullYear()} bossrod</span>
-          {onOpenPrivacy && (
-            <>
-              <span className="text-[#1e1e1e]">·</span>
-              <button
-                onClick={onOpenPrivacy}
-                className="section-label text-[#555555] hover:text-[#c8f000] cursor-pointer transition-colors"
-                title="Privacy Policy & AdSense Disclosures"
-              >
-                // privacy
-              </button>
-            </>
-          )}
+          
+          <span className="text-[#1e1e1e]">·</span>
+          <a
+            href="/privacy"
+            onClick={(e) => {
+              if (onOpenPrivacy) {
+                e.preventDefault();
+                onOpenPrivacy();
+              }
+            }}
+            className="section-label text-[#555555] hover:text-[#c8f000] cursor-pointer transition-colors"
+            title="Privacy Policy & AdSense Disclosures"
+          >
+            // privacy
+          </a>
+
+          <span className="text-[#1e1e1e]">·</span>
+          <a
+            href="/terms"
+            onClick={(e) => {
+              if (onOpenTerms) {
+                e.preventDefault();
+                onOpenTerms();
+              }
+            }}
+            className="section-label text-[#555555] hover:text-[#c8f000] cursor-pointer transition-colors"
+            title="Terms of Service"
+          >
+            // terms
+          </a>
+
+          <span className="text-[#1e1e1e]">·</span>
+          <a
+            href="mailto:contact@bossrod.com"
+            className="section-label text-[#555555] hover:text-[#c8f000] cursor-pointer transition-colors"
+            title="Contact Support & Publisher Inquiries"
+          >
+            // contact
+          </a>
+
           {onOpenDashboard && (
             <>
               <span className="text-[#1e1e1e]">·</span>
