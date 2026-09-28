@@ -49,6 +49,27 @@ export function Footer({ onOpenDashboard, onOpenPrivacy, onOpenTerms }: FooterPr
           </a>
 
           <span className="text-[#1e1e1e]">·</span>
+          <button
+            onClick={() => {
+              const win = window as unknown as {
+                googlefc?: {
+                  callbackQueue?: Array<() => void>;
+                  showRevocationMessage?: () => void;
+                };
+              };
+              if (win.googlefc?.callbackQueue && win.googlefc.showRevocationMessage) {
+                win.googlefc.callbackQueue.push(win.googlefc.showRevocationMessage);
+              } else if (onOpenPrivacy) {
+                onOpenPrivacy();
+              }
+            }}
+            className="section-label text-[#555555] hover:text-[#c8f000] cursor-pointer transition-colors"
+            title="Privacy and Cookie Settings (Google CMP)"
+          >
+            // cookies
+          </button>
+
+          <span className="text-[#1e1e1e]">·</span>
           <a
             href="mailto:contact@bossrod.com"
             className="section-label text-[#555555] hover:text-[#c8f000] cursor-pointer transition-colors"

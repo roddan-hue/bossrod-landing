@@ -76,6 +76,34 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
                 to opt out of third-party vendor use of cookies.
               </li>
             </ul>
+
+            <div className="pt-2.5 border-t border-[#222222] mt-2">
+              <span className="text-[#d0d0d0] block mb-1 font-semibold">
+                EEA, UK &amp; Swiss User Consent (Google CMP):
+              </span>
+              <p className="mb-2 text-[#999999]">
+                In accordance with European regulations and the IAB Europe Transparency and Consent Framework (TCF v2.2), you can re-open the consent dialog to modify or revoke your advertising preferences at any time:
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  const win = window as unknown as {
+                    googlefc?: {
+                      callbackQueue?: Array<() => void>;
+                      showRevocationMessage?: () => void;
+                    };
+                  };
+                  if (win.googlefc?.callbackQueue && win.googlefc.showRevocationMessage) {
+                    win.googlefc.callbackQueue.push(win.googlefc.showRevocationMessage);
+                  } else {
+                    alert('Consent management is active for visitors located in the European Economic Area (EEA), UK, and Switzerland.');
+                  }
+                }}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] bg-[#1e1e1e] hover:bg-[#282828] text-[#c8f000] border border-[#333333] hover:border-[#c8f000] transition-colors cursor-pointer"
+              >
+                <span>// manage consent choices</span>
+              </button>
+            </div>
           </div>
 
           {/* Section 2: Log Files & Edge Telemetry */}
