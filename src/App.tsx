@@ -69,44 +69,112 @@ export function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  const [auTime, setAuTime] = useState('');
+
+  // Live Australian Eastern Time clock (Melbourne / Sydney)
+  useEffect(() => {
+    const updateTime = () => {
+      try {
+        const timeStr = new Intl.DateTimeFormat('en-AU', {
+          timeZone: 'Australia/Melbourne',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        }).format(new Date());
+
+        const parts = new Intl.DateTimeFormat('en-AU', {
+          timeZone: 'Australia/Melbourne',
+          timeZoneName: 'short',
+        }).formatToParts(new Date());
+        const tz = parts.find((p) => p.type === 'timeZoneName')?.value || 'AEDT';
+
+        setAuTime(`${timeStr} ${tz}`);
+      } catch {
+        setAuTime(new Date().toLocaleTimeString());
+      }
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ background: '#0a0a0a', color: '#f0f0f0' }}
+      style={{ background: 'var(--bg)', color: 'var(--text)' }}
     >
       <main className="flex-1 max-w-6xl w-full mx-auto px-6">
+        {/* ── Australian Studio Telemetry Strip ───── */}
+        <div className="flex items-center justify-between border-b border-[#1d2420] py-2.5 text-[11px] font-['JetBrains_Mono'] text-[#5c6760]">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#7ea085] animate-pulse" />
+            <span className="text-[#8e9890] font-medium">MELBOURNE, AU</span>
+            <span className="text-[#2b352e]">/</span>
+            <span className="text-[#dfa838] font-medium">{auTime || 'AEST/AEDT'}</span>
+          </div>
+          <div className="flex items-center gap-3 text-[10px]">
+            <span className="hidden sm:inline text-[#5c6760]">EDGE: AP-SOUTHEAST-2 (SYDNEY)</span>
+            <span className="hidden sm:inline text-[#2b352e]">·</span>
+            <span className="text-[#7ea085]">NOMINAL STATUS</span>
+          </div>
+        </div>
+
         {/* ── Hero ─────────────────────────────────── */}
-        <section className="pt-8 pb-7 border-b border-[#1e1e1e]">
+        <section className="pt-7 pb-7 border-b border-[#1d2420]">
           {/* Domain tag */}
           <div className="flex items-center gap-2 mb-3">
-            <div className="acid-dot" />
-            <span className="section-label">bossrod.com</span>
+            <span className="wattle-dot" />
+            <span className="section-label text-[#dfa838]">bossrod.com</span>
+            <span className="text-[#2b352e]">·</span>
+            <span className="text-[#5c6760] text-[10px] uppercase tracking-wider font-['JetBrains_Mono']">Australian Digital Studio</span>
           </div>
 
-          {/* bossrod — understated, lowercase, not screaming */}
+          {/* bossrod — understated, condensed, architectural */}
           <h1
-            className="text-[clamp(36px,5vw,60px)] text-[#d0d0d0] leading-none mb-3"
+            className="text-[clamp(40px,5.5vw,68px)] text-[#f2f4f2] leading-none mb-3"
             style={{
               fontFamily: "'Barlow Condensed', sans-serif",
-              fontWeight: 700,
+              fontWeight: 900,
               letterSpacing: '-0.02em',
             }}
           >
-            bossrod.
+            bossrod<span className="text-[#dfa838]">.</span>
           </h1>
 
-          {/* Tagline — dry, monospace, dim */}
-          <p className="text-[#666666] text-xs font-['JetBrains_Mono']">
-            builds things.&nbsp;&nbsp;ships code.&nbsp;&nbsp;bad at interviews.
+          {/* Professional studio tagline */}
+          <p className="text-[#8e9890] text-xs sm:text-sm font-['JetBrains_Mono'] max-w-2xl leading-relaxed mb-4">
+            Independent software engineering studio &amp; distributed application ecosystem. Architecting high-concurrency cloud systems, real-time web engines, and edge-native platforms.
           </p>
+
+          {/* Subtle Australian telemetry badges */}
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            <span className="mono-tag text-[10px] text-[#7ea085] border-[#223027] bg-[#111713]">
+              🇦🇺 Hosted &amp; Engineered in Australia
+            </span>
+            <span className="mono-tag text-[10px] text-[#dfa838] border-[#382b17] bg-[#1a150e]">
+              Edge: ap-southeast-2 (Sydney)
+            </span>
+            <span className="mono-tag text-[10px] text-[#8e9890] border-[#1d2420]">
+              Sub-30ms Domestic Latency
+            </span>
+          </div>
         </section>
 
         {/* ── Active Deployments ──────────────────── */}
         <section id="projects" className="py-6 scroll-mt-12">
           {/* Section header row */}
           <div className="flex items-center justify-between mb-4">
-            <span className="section-label">// active deployments</span>
-            <span className="section-label">{SUBDOMAINS.length.toString().padStart(2, '0')}&nbsp;nodes&nbsp;online</span>
+            <div className="flex items-center gap-2">
+              <span className="section-label text-[#dfa838]">// active deployments</span>
+              <span className="text-[#2b352e]">·</span>
+              <span className="text-[#5c6760] text-[10px]">federated cloud cluster</span>
+            </div>
+            <span className="section-label text-[#7ea085] flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#7ea085]" />
+              {SUBDOMAINS.length.toString().padStart(2, '0')}&nbsp;nodes&nbsp;online
+            </span>
           </div>
 
           {/* Active project cards in a responsive grid */}
@@ -130,30 +198,30 @@ export function App() {
         {/* ── Ecosystem Architecture & Transparency ── */}
         <section className="pb-8">
           <hr className="divider mb-4" />
-          <div className="border border-[#1e1e1e] bg-[#0d0d0d] p-5 sm:p-6 text-xs font-['JetBrains_Mono'] space-y-4">
-            <div className="flex items-center justify-between border-b border-[#1a1a1a] pb-3">
-              <span className="section-label text-[#c8f000]">// platform overview &amp; documentation</span>
-              <span className="text-[#555555] text-[10px]">architecture: serverless + edge</span>
+          <div className="border border-[#1d2420] bg-[#111613] p-5 sm:p-6 text-xs font-['JetBrains_Mono'] space-y-4">
+            <div className="flex items-center justify-between border-b border-[#1d2420] pb-3">
+              <span className="section-label text-[#dfa838]">// platform architecture &amp; sovereign compliance</span>
+              <span className="text-[#5c6760] text-[10px]">infrastructure: aws edge + serverless</span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-[#888888] leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-[#8e9890] leading-relaxed">
               <div>
-                <h2 className="text-[#f0f0f0] font-bold text-xs uppercase mb-2">About the BOSSROD Ecosystem</h2>
+                <h2 className="text-[#f2f4f2] font-bold text-xs uppercase mb-2">Ecosystem Architecture &amp; Australian Engineering</h2>
                 <p className="mb-2">
-                  <strong className="text-[#d0d0d0]">bossrod.com</strong> serves as the central hub and orchestrator for our network of web applications, cloud utilities, and real-time interactive systems. Each connected node operates autonomously on isolated, scalable cloud infrastructure while adhering to unified privacy, performance, and accessibility standards.
+                  <strong className="text-[#f2f4f2]">bossrod.com</strong> serves as the central hub and orchestrator for our network of web applications, cloud utilities, and real-time interactive systems. Headquartered and engineered out of Melbourne, Australia, connected nodes execute on isolated cloud infrastructure with low-latency edge delivery via AWS CloudFront points of presence in Sydney, Melbourne, Perth, and global regions.
                 </p>
                 <p>
-                  From real-time multiplayer board engines like <em>Asian Mahjong</em> (<a href="https://asianmahjong.com" target="_blank" rel="noopener noreferrer" className="text-[#c8f000] underline">asianmahjong.com</a>) to AI-assisted career and assessment suites like <em>getJob</em> and <em>QuizMe</em>, our software focuses on high-speed execution, minimal dependencies, and transparent data practices.
+                  From real-time multiplayer systems like <em>Asian Mahjong</em> (<a href="https://asianmahjong.com" target="_blank" rel="noopener noreferrer" className="text-[#dfa838] underline">asianmahjong.com</a>) to domestic utility engines like <em>getJob</em> (Australian career discovery) and <em>My Pantry Buddy</em> (grocery price comparison across Woolworths, Coles &amp; ALDI), each application is built with a focus on minimal bundle overhead, resilient failover, and transparent data practices.
                 </p>
               </div>
 
               <div>
-                <h2 className="text-[#f0f0f0] font-bold text-xs uppercase mb-2">Standards &amp; Publisher Compliance</h2>
+                <h2 className="text-[#f2f4f2] font-bold text-xs uppercase mb-2">Data Sovereignty &amp; Publisher Standards</h2>
                 <p className="mb-2">
-                  Our ecosystem adheres strictly to modern web safety and monetization policies, including Google AdSense program guidelines, the IAB Europe Transparency and Consent Framework (TCF v2.2), and digital authorized seller verification (<a href="/ads.txt" className="text-[#c8f000] underline">ads.txt</a>).
+                  Our ecosystem adheres strictly to modern web safety and monetization standards, including the Australian Privacy Principles (APPs, Privacy Act 1988), the IAB Europe Transparency and Consent Framework (TCF v2.2), and digital authorized seller verification (<a href="/ads.txt" className="text-[#dfa838] underline">ads.txt</a>).
                 </p>
                 <p>
-                  We prioritize user data privacy: no persistent personal identifiers or tracking profiles are harvested without consent. For privacy preferences, inquiries, or terms of use, please explore our formal disclosures linked below.
+                  We prioritize user data sovereignty: no third-party tracking graphs or personal profiling identifiers are harvested without consent. For privacy preferences, regulatory inquiries, or terms of use, please explore our formal disclosures linked below.
                 </p>
               </div>
             </div>

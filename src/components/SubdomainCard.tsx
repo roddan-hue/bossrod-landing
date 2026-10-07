@@ -7,16 +7,25 @@ interface SubdomainCardProps {
 }
 
 export function SubdomainCard({ project }: SubdomainCardProps) {
+  const isDomesticAU = ['getjob', 'grocer', 'garage'].includes(project.id);
+
   return (
-    <BentoCard className="group">
-      {/* Top: category label + subdomain link */}
+    <BentoCard className="group hover:border-[#dfa838]/60 transition-all duration-200">
+      {/* Top: category label + subtle regional tag + subdomain link */}
       <div className="flex items-center justify-between mb-2">
-        <span className="section-label text-[#c8f000] text-[10px]">{project.badge.toLowerCase()}</span>
+        <div className="flex items-center gap-1.5">
+          <span className="section-label text-[#dfa838] text-[10px]">{project.badge.toLowerCase()}</span>
+          {isDomesticAU && (
+            <span className="text-[9px] font-['JetBrains_Mono'] text-[#7ea085] bg-[#141b16] px-1 py-0.2 border border-[#223027] rounded-[1px]">
+              AU REGION
+            </span>
+          )}
+        </div>
         <a
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="section-label flex items-center gap-1 text-[#888888] hover:text-[#c8f000] text-[10px] transition-colors"
+          className="section-label flex items-center gap-1 text-[#8e9890] hover:text-[#dfa838] text-[10px] transition-colors"
         >
           <span>{project.subdomain}</span>
           <ArrowUpRight className="w-2.5 h-2.5" />
@@ -24,25 +33,25 @@ export function SubdomainCard({ project }: SubdomainCardProps) {
       </div>
 
       {/* Project name — compact headline */}
-      <h3 className="headline text-2xl md:text-3xl text-[#f0f0f0] leading-none mb-1">
+      <h3 className="headline text-2xl md:text-3xl text-[#f2f4f2] leading-none mb-1 group-hover:text-[#ffffff] transition-colors">
         {project.name}
       </h3>
 
       {/* Tagline */}
-      <p className="text-[#888888] text-[11px] leading-snug mb-1.5">
+      <p className="text-[#8e9890] text-[11px] leading-snug mb-1.5 font-['JetBrains_Mono']">
         {project.tagline}
       </p>
 
       {/* Description */}
-      <p className="text-[#666666] text-[11px] leading-relaxed mb-3">
+      <p className="text-[#647169] text-[11px] leading-relaxed mb-3">
         {project.description}
       </p>
 
       {/* Bottom: tech stack + launch */}
-      <div className="mt-auto pt-2 border-t border-[#1e1e1e] flex items-center justify-between gap-2">
+      <div className="mt-auto pt-2 border-t border-[#1d2420] flex items-center justify-between gap-2">
         <div className="flex flex-wrap gap-1">
           {project.techStack.slice(0, 3).map((tech) => (
-            <span key={tech} className="mono-tag text-[9px] py-0.5 px-1.5">
+            <span key={tech} className="mono-tag text-[9px] py-0.5 px-1.5 text-[#8e9890] border-[#1d2420]">
               {tech}
             </span>
           ))}

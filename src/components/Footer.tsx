@@ -9,16 +9,18 @@ interface FooterProps {
 
 export function Footer({ onOpenDashboard, onOpenPrivacy, onOpenTerms }: FooterProps) {
   return (
-    <footer className="w-full border-t border-[#1e1e1e] bg-[#0a0a0a]">
+    <footer className="w-full border-t border-[#1d2420] bg-[#0b0e0c]">
       <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Left: nodes status + copyright + telemetry terminal link + privacy + terms */}
-        <div className="flex items-center flex-wrap gap-3">
+        <div className="flex items-center flex-wrap gap-2.5 sm:gap-3">
           <div className="acid-dot" />
-          <span className="section-label">{SUBDOMAINS.length.toString().padStart(2, '0')} nodes online</span>
-          <span className="text-[#1e1e1e]">·</span>
+          <span className="section-label text-[#7ea085]">{SUBDOMAINS.length.toString().padStart(2, '0')} nodes online</span>
+          <span className="text-[#2b352e]">·</span>
           <span className="section-label">© {new Date().getFullYear()} bossrod</span>
+          <span className="text-[#2b352e]">·</span>
+          <span className="section-label text-[#5c6760]">melbourne, au</span>
           
-          <span className="text-[#1e1e1e]">·</span>
+          <span className="text-[#2b352e]">·</span>
           <a
             href="/privacy"
             onClick={(e) => {
@@ -27,13 +29,13 @@ export function Footer({ onOpenDashboard, onOpenPrivacy, onOpenTerms }: FooterPr
                 onOpenPrivacy();
               }
             }}
-            className="section-label text-[#555555] hover:text-[#c8f000] cursor-pointer transition-colors"
-            title="Privacy Policy & AdSense Disclosures"
+            className="section-label text-[#5c6760] hover:text-[#dfa838] cursor-pointer transition-colors"
+            title="Privacy Policy & Australian Privacy Principles Compliance"
           >
             // privacy
           </a>
 
-          <span className="text-[#1e1e1e]">·</span>
+          <span className="text-[#2b352e]">·</span>
           <a
             href="/terms"
             onClick={(e) => {
@@ -42,13 +44,13 @@ export function Footer({ onOpenDashboard, onOpenPrivacy, onOpenTerms }: FooterPr
                 onOpenTerms();
               }
             }}
-            className="section-label text-[#555555] hover:text-[#c8f000] cursor-pointer transition-colors"
+            className="section-label text-[#5c6760] hover:text-[#dfa838] cursor-pointer transition-colors"
             title="Terms of Service"
           >
             // terms
           </a>
 
-          <span className="text-[#1e1e1e]">·</span>
+          <span className="text-[#2b352e]">·</span>
           <button
             onClick={() => {
               const win = window as unknown as {
@@ -63,16 +65,16 @@ export function Footer({ onOpenDashboard, onOpenPrivacy, onOpenTerms }: FooterPr
                 onOpenPrivacy();
               }
             }}
-            className="section-label text-[#555555] hover:text-[#c8f000] cursor-pointer transition-colors"
+            className="section-label text-[#5c6760] hover:text-[#dfa838] cursor-pointer transition-colors"
             title="Privacy and Cookie Settings (Google CMP)"
           >
             // cookies
           </button>
 
-          <span className="text-[#1e1e1e]">·</span>
+          <span className="text-[#2b352e]">·</span>
           <a
             href="mailto:contact@bossrod.com"
-            className="section-label text-[#555555] hover:text-[#c8f000] cursor-pointer transition-colors"
+            className="section-label text-[#5c6760] hover:text-[#dfa838] cursor-pointer transition-colors"
             title="Contact Support & Publisher Inquiries"
           >
             // contact
@@ -80,10 +82,10 @@ export function Footer({ onOpenDashboard, onOpenPrivacy, onOpenTerms }: FooterPr
 
           {onOpenDashboard && (
             <>
-              <span className="text-[#1e1e1e]">·</span>
+              <span className="text-[#2b352e]">·</span>
               <button
                 onClick={onOpenDashboard}
-                className="section-label text-[#555555] hover:text-[#c8f000] cursor-pointer transition-colors"
+                className="section-label text-[#5c6760] hover:text-[#dfa838] cursor-pointer transition-colors"
                 title="Open Telemetry Dashboard"
               >
                 // sys.mon

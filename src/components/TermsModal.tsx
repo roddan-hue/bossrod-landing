@@ -14,8 +14,8 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-[#1e1e1e]">
           <div className="flex items-center gap-2">
-            <FileText className="w-4 h-4 text-[#c8f000]" />
-            <span className="section-label text-[#c8f000]">// terms of service</span>
+            <FileText className="w-4 h-4 text-[#dfa838]" />
+            <span className="section-label text-[#dfa838]">// terms of service</span>
           </div>
           <button
             onClick={onClose}
@@ -77,7 +77,7 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
               5. Contact & Inquiries
             </h4>
             <p>
-              Inquiries regarding these terms can be directed via email to <a href="mailto:contact@bossrod.com" className="text-[#c8f000] underline">contact@bossrod.com</a>.
+              Inquiries regarding these terms can be directed via email to <a href="mailto:contact@bossrod.com" className="text-[#dfa838] underline">contact@bossrod.com</a>.
             </p>
           </div>
         </div>

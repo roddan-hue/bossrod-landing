@@ -114,7 +114,7 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
                 <span className="font-['Barlow_Condensed'] font-bold text-xl uppercase tracking-wider text-[#f0f0f0]">
                   bossrod // telemetry control
                 </span>
-                <span className="mono-tag text-[#c8f000] border-[#c8f000]/40">
+                <span className="mono-tag text-[#dfa838] border-[#dfa838]/40">
                   internal
                 </span>
                 {isLiveSynced ? (
@@ -123,13 +123,13 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
                     live aws data
                   </span>
                 ) : (
-                  <span className="mono-tag text-[#888888] border-[#333333]">
+                  <span className="mono-tag text-[#8e9890] border-[#1d2420]">
                     syncing...
                   </span>
                 )}
               </div>
-              <p className="text-[11px] font-['JetBrains_Mono'] text-[#666666]">
-                ap-southeast-1 edge analytics · 4 subdomains + apex hub
+              <p className="text-[11px] font-['JetBrains_Mono'] text-[#5c6760]">
+                ap-southeast-2 (Sydney) &amp; Global Edge Telemetry · 7 subdomains + apex hub
               </p>
             </div>
           </div>
@@ -138,9 +138,9 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
             <button
               onClick={runHealthProbe}
               disabled={isProbing}
-              className="btn-ghost text-[11px] py-1.5 px-3 flex items-center gap-1.5 cursor-pointer disabled:opacity-50 hover:border-[#c8f000]/60 hover:text-[#c8f000]"
+              className="btn-ghost text-[11px] py-1.5 px-3 flex items-center gap-1.5 cursor-pointer disabled:opacity-50 hover:border-[#dfa838]/60 hover:text-[#dfa838]"
             >
-              <RefreshCw className={`w-3 h-3 ${isProbing ? 'animate-spin text-[#c8f000]' : ''}`} />
+              <RefreshCw className={`w-3 h-3 ${isProbing ? 'animate-spin text-[#dfa838]' : ''}`} />
               <span>{isProbing ? 'syncing edge data...' : 'probe nodes'}</span>
             </button>
 
@@ -154,7 +154,7 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
 
             <button
               onClick={onClose}
-              className="p-1.5 text-[#666666] hover:text-[#f0f0f0] border border-[#1e1e1e] hover:border-[#333333] transition-colors cursor-pointer"
+              className="p-1.5 text-[#666666] hover:text-[#f2f4f2] border border-[#1d2420] hover:border-[#333333] transition-colors cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -163,51 +163,51 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
 
         {/* ── Quick KPI Stat Cards ────────────────────────────── */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
-          <div className="flat-card p-3 bg-[#141414]">
-            <span className="section-label">24h edge requests</span>
-            <div className="text-2xl font-bold font-['JetBrains_Mono'] text-[#f0f0f0] mt-1">
+          <div className="flat-card p-3 bg-[#111613]">
+            <span className="section-label text-[#5c6760]">24h edge requests</span>
+            <div className="text-2xl font-bold font-['JetBrains_Mono'] text-[#f2f4f2] mt-1">
               {telemetry.totalRequests24h.toLocaleString()}
             </div>
-            <span className="text-[10px] text-[#666666] font-['JetBrains_Mono']">
+            <span className="text-[10px] text-[#5c6760] font-['JetBrains_Mono']">
               +14.2% vs yesterday
             </span>
           </div>
 
-          <div className="flat-card p-3 bg-[#141414]">
-            <span className="section-label">unique visitors</span>
-            <div className="text-2xl font-bold font-['JetBrains_Mono'] text-[#c8f000] mt-1">
+          <div className="flat-card p-3 bg-[#111613]">
+            <span className="section-label text-[#5c6760]">unique visitors</span>
+            <div className="text-2xl font-bold font-['JetBrains_Mono'] text-[#dfa838] mt-1">
               {telemetry.totalVisitors24h.toLocaleString()}
             </div>
-            <span className="text-[10px] text-[#666666] font-['JetBrains_Mono']">
+            <span className="text-[10px] text-[#5c6760] font-['JetBrains_Mono']">
               cross-subdomain sessions
             </span>
           </div>
 
-          <div className="flat-card p-3 bg-[#141414]">
-            <span className="section-label">active nodes</span>
-            <div className="text-2xl font-bold font-['JetBrains_Mono'] text-[#f0f0f0] mt-1">
+          <div className="flat-card p-3 bg-[#111613]">
+            <span className="section-label text-[#5c6760]">active nodes</span>
+            <div className="text-2xl font-bold font-['JetBrains_Mono'] text-[#f2f4f2] mt-1">
               {telemetry.activeNodes} / {telemetry.totalNodes}
             </div>
-            <span className="text-[10px] text-[#c8f000] font-['JetBrains_Mono']">
+            <span className="text-[10px] text-[#7ea085] font-['JetBrains_Mono']">
               100% operational
             </span>
           </div>
 
-          <div className="flat-card p-3 bg-[#141414]">
-            <span className="section-label">avg edge latency</span>
-            <div className="text-2xl font-bold font-['JetBrains_Mono'] text-[#f0f0f0] mt-1">
+          <div className="flat-card p-3 bg-[#111613]">
+            <span className="section-label text-[#5c6760]">avg edge latency</span>
+            <div className="text-2xl font-bold font-['JetBrains_Mono'] text-[#f2f4f2] mt-1">
               {telemetry.avgLatencyMs}ms
             </div>
-            <span className="text-[10px] text-[#666666] font-['JetBrains_Mono']">
+            <span className="text-[10px] text-[#5c6760] font-['JetBrains_Mono']">
               error rate: {telemetry.errorRatePercent}%
             </span>
           </div>
         </div>
 
         {/* ── Filter: Domain Selector ─────────────────────────── */}
-        <div className="flex items-center flex-wrap gap-1.5 p-2 bg-[#121212] border border-[#1e1e1e]">
-          <span className="section-label text-[#666666] mr-2 flex items-center gap-1">
-            <Layers className="w-3 h-3 text-[#c8f000]" />
+        <div className="flex items-center flex-wrap gap-1.5 p-2 bg-[#111613] border border-[#1d2420]">
+          <span className="section-label text-[#5c6760] mr-2 flex items-center gap-1">
+            <Layers className="w-3 h-3 text-[#dfa838]" />
             scope:
           </span>
 
@@ -215,8 +215,8 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
             onClick={() => setSelectedDomainId('all')}
             className={`text-xs font-['JetBrains_Mono'] px-2.5 py-1 transition-colors cursor-pointer border ${
               selectedDomainId === 'all'
-                ? 'bg-[#c8f000] text-black font-bold border-[#c8f000]'
-                : 'bg-transparent text-[#888888] border-[#1e1e1e] hover:border-[#333333] hover:text-[#f0f0f0]'
+                ? 'bg-[#dfa838] text-black font-bold border-[#dfa838]'
+                : 'bg-transparent text-[#8e9890] border-[#1d2420] hover:border-[#382b17] hover:text-[#f2f4f2]'
             }`}
           >
             All Subdomains (Combined)
@@ -228,8 +228,8 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
               onClick={() => setSelectedDomainId(s.id)}
               className={`text-xs font-['JetBrains_Mono'] px-2.5 py-1 transition-colors cursor-pointer border ${
                 selectedDomainId === s.id
-                  ? 'bg-[#c8f000] text-black font-bold border-[#c8f000]'
-                  : 'bg-transparent text-[#888888] border-[#1e1e1e] hover:border-[#333333] hover:text-[#f0f0f0]'
+                  ? 'bg-[#dfa838] text-black font-bold border-[#dfa838]'
+                  : 'bg-transparent text-[#8e9890] border-[#1d2420] hover:border-[#382b17] hover:text-[#f2f4f2]'
               }`}
             >
               {s.subdomain}
@@ -241,34 +241,34 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
 
           {/* Daily Trend Chart (7 cols) */}
-          <div className="lg:col-span-7 flat-card p-4 bg-[#111111] flex flex-col">
-            <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#1e1e1e]">
+          <div className="lg:col-span-7 flat-card p-4 bg-[#111613] flex flex-col">
+            <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#1d2420]">
               <div className="flex items-center gap-2">
-                <BarChart2 className="w-3.5 h-3.5 text-[#c8f000]" />
-                <span className="section-label text-[#c8f000]">
+                <BarChart2 className="w-3.5 h-3.5 text-[#dfa838]" />
+                <span className="section-label text-[#dfa838]">
                   {selectedDomain ? `${selectedDomain.name} (${selectedDomain.subdomain})` : 'Ecosystem-Wide'} // 7-day daily trend
                 </span>
               </div>
-              <div className="text-[10px] font-['JetBrains_Mono'] text-[#666666]">
+              <div className="text-[10px] font-['JetBrains_Mono'] text-[#5c6760]">
                 avg: {avgDailyRequests.toLocaleString()} reqs/day
               </div>
             </div>
 
             {/* Scope Summary Banner */}
-            <div className="grid grid-cols-3 gap-2 mb-4 p-2.5 bg-[#141414] border border-[#1a1a1a] text-xs font-['JetBrains_Mono']">
+            <div className="grid grid-cols-3 gap-2 mb-4 p-2.5 bg-[#161c18] border border-[#1d2420] text-xs font-['JetBrains_Mono']">
               <div>
-                <span className="section-label block">7-day volume</span>
-                <span className="text-[#f0f0f0] font-bold text-sm">{total7DayRequests.toLocaleString()}</span>
+                <span className="section-label block text-[#5c6760]">7-day volume</span>
+                <span className="text-[#f2f4f2] font-bold text-sm">{total7DayRequests.toLocaleString()}</span>
               </div>
               <div>
-                <span className="section-label block">current share</span>
-                <span className="text-[#c8f000] font-bold text-sm">
+                <span className="section-label block text-[#5c6760]">current share</span>
+                <span className="text-[#dfa838] font-bold text-sm">
                   {selectedDomain ? `${selectedDomain.sharePercentage}%` : '100%'}
                 </span>
               </div>
               <div>
-                <span className="section-label block">top geo</span>
-                <span className="text-[#d0d0d0] text-sm">
+                <span className="section-label block text-[#5c6760]">top geo</span>
+                <span className="text-[#8e9890] text-sm">
                   {selectedDomain ? selectedDomain.topCountry : '🇵🇭 PH (46%)'}
                 </span>
               </div>
@@ -286,32 +286,32 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
                     className="flex-1 flex flex-col items-center h-full justify-end group relative cursor-pointer"
                   >
                     {/* Tooltip on hover */}
-                    <div className="absolute -top-9 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-[#0a0a0a] border border-[#333333] px-2 py-0.5 text-[9px] font-mono text-[#f0f0f0] whitespace-nowrap z-10">
+                    <div className="absolute -top-9 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-[#0b0e0c] border border-[#1d2420] px-2 py-0.5 text-[9px] font-mono text-[#f2f4f2] whitespace-nowrap z-10">
                       {dp.requests.toLocaleString()} reqs · {dp.visitors.toLocaleString()} users
                     </div>
 
                     {/* Bar value */}
-                    <span className="text-[9px] font-['JetBrains_Mono'] text-[#666666] mb-1 group-hover:text-[#c8f000] transition-colors">
+                    <span className="text-[9px] font-['JetBrains_Mono'] text-[#5c6760] mb-1 group-hover:text-[#dfa838] transition-colors">
                       {(dp.requests / 1000).toFixed(1)}k
                     </span>
 
                     {/* Bar element */}
-                    <div className="w-full max-w-[36px] bg-[#1a1a1a] rounded-t-[1px] overflow-hidden flex flex-col justify-end h-full">
+                    <div className="w-full max-w-[36px] bg-[#1d2420] rounded-t-[1px] overflow-hidden flex flex-col justify-end h-full">
                       <div
                         className={`w-full transition-all duration-300 ${
                           isToday
-                            ? 'bg-[#c8f000]'
-                            : 'bg-[#444444] group-hover:bg-[#c8f000]/80'
+                            ? 'bg-[#dfa838]'
+                            : 'bg-[#404c44] group-hover:bg-[#dfa838]/80'
                         }`}
                         style={{ height: `${heightPercent}%` }}
                       />
                     </div>
 
                     {/* Labels */}
-                    <span className={`text-[10px] font-['JetBrains_Mono'] mt-1.5 ${isToday ? 'text-[#c8f000] font-bold' : 'text-[#888888]'}`}>
+                    <span className={`text-[10px] font-['JetBrains_Mono'] mt-1.5 ${isToday ? 'text-[#dfa838] font-bold' : 'text-[#8e9890]'}`}>
                       {dp.day}
                     </span>
-                    <span className="text-[9px] font-['JetBrains_Mono'] text-[#555555]">
+                    <span className="text-[9px] font-['JetBrains_Mono'] text-[#5c6760]">
                       {dp.date}
                     </span>
                   </div>
@@ -319,20 +319,20 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
               })}
             </div>
 
-            <div className="mt-3 pt-2 border-t border-[#1e1e1e] flex items-center justify-between text-[10px] font-['JetBrains_Mono'] text-[#666666]">
-              <span>7-day retention & edge traffic curves</span>
+            <div className="mt-3 pt-2 border-t border-[#1d2420] flex items-center justify-between text-[10px] font-['JetBrains_Mono'] text-[#5c6760]">
+              <span>7-day retention &amp; edge traffic curves</span>
               <span>updated live via CloudWatch metrics</span>
             </div>
           </div>
 
           {/* Subdomain Distribution & Drilldown Table (5 cols) */}
-          <div className="lg:col-span-5 flat-card p-4 bg-[#111111] flex flex-col">
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#1e1e1e]">
+          <div className="lg:col-span-5 flat-card p-4 bg-[#111613] flex flex-col">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#1d2420]">
               <div className="flex items-center gap-2">
-                <Activity className="w-3.5 h-3.5 text-[#c8f000]" />
-                <span className="section-label text-[#c8f000]">distribution by domain (click to filter)</span>
+                <Activity className="w-3.5 h-3.5 text-[#dfa838]" />
+                <span className="section-label text-[#dfa838]">distribution by domain (click to filter)</span>
               </div>
-              <span className="text-[10px] font-['JetBrains_Mono'] text-[#666666]">
+              <span className="text-[10px] font-['JetBrains_Mono'] text-[#5c6760]">
                 24h share
               </span>
             </div>
@@ -346,33 +346,33 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
                     onClick={() => setSelectedDomainId(isSelected ? 'all' : item.id)}
                     className={`p-2.5 border transition-all cursor-pointer text-xs font-['JetBrains_Mono'] ${
                       isSelected
-                        ? 'border-[#c8f000] bg-[#181a0e]'
-                        : 'border-[#1a1a1a] hover:border-[#2a2a2a] bg-[#131313]'
+                        ? 'border-[#dfa838] bg-[#1a170e]'
+                        : 'border-[#1d2420] hover:border-[#334237] bg-[#141a15]'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1">
                       <div className="flex items-center gap-1.5">
-                        {isSelected && <div className="w-1.5 h-1.5 bg-[#c8f000] rounded-full" />}
-                        <span className={`font-medium ${isSelected ? 'text-[#c8f000]' : 'text-[#f0f0f0]'}`}>
+                        {isSelected && <div className="w-1.5 h-1.5 bg-[#dfa838] rounded-full" />}
+                        <span className={`font-medium ${isSelected ? 'text-[#dfa838]' : 'text-[#f2f4f2]'}`}>
                           {item.subdomain}
                         </span>
                       </div>
                       <div className="flex items-center gap-2 text-[11px]">
-                        <span className="text-[#888888]">{item.requests.toLocaleString()} reqs</span>
-                        <span className="text-[#c8f000] font-bold w-12 text-right">{item.sharePercentage}%</span>
+                        <span className="text-[#8e9890]">{item.requests.toLocaleString()} reqs</span>
+                        <span className="text-[#dfa838] font-bold w-12 text-right">{item.sharePercentage}%</span>
                       </div>
                     </div>
 
                     {/* Progress bar */}
-                    <div className="w-full h-1 bg-[#1a1a1a] overflow-hidden my-1">
+                    <div className="w-full h-1 bg-[#1d2420] overflow-hidden my-1">
                       <div
-                        className={`h-full ${isSelected ? 'bg-[#c8f000]' : 'bg-[#666666]'}`}
+                        className={`h-full ${isSelected ? 'bg-[#dfa838]' : 'bg-[#5c6760]'}`}
                         style={{ width: `${item.sharePercentage}%` }}
                       />
                     </div>
 
                     {/* Metadata line */}
-                    <div className="flex items-center justify-between text-[10px] text-[#666666] pt-0.5">
+                    <div className="flex items-center justify-between text-[10px] text-[#5c6760] pt-0.5">
                       <span>{item.uniqueVisitors.toLocaleString()} unique users</span>
                       <span>{item.bandwidthMb} MB transfer</span>
                     </div>
@@ -381,12 +381,12 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
               })}
             </div>
 
-            <div className="mt-3 pt-2 border-t border-[#1e1e1e] flex items-center justify-between text-[10px] font-['JetBrains_Mono'] text-[#666666]">
+            <div className="mt-3 pt-2 border-t border-[#1d2420] flex items-center justify-between text-[10px] font-['JetBrains_Mono'] text-[#5c6760]">
               <span>click any card above to focus daily trends</span>
               {selectedDomainId !== 'all' && (
                 <button
                   onClick={() => setSelectedDomainId('all')}
-                  className="text-[#c8f000] hover:underline cursor-pointer"
+                  className="text-[#dfa838] hover:underline cursor-pointer"
                 >
                   [reset to all]
                 </button>
@@ -403,8 +403,8 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
           <div className="flat-card p-4 bg-[#111111]">
             <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#1e1e1e]">
               <div className="flex items-center gap-2">
-                <Server className="w-3.5 h-3.5 text-[#c8f000]" />
-                <span className="section-label text-[#c8f000]">live node matrix</span>
+                <Server className="w-3.5 h-3.5 text-[#dfa838]" />
+                <span className="section-label text-[#dfa838]">live node matrix</span>
               </div>
               {lastProbedTime && (
                 <span className="text-[10px] font-['JetBrains_Mono'] text-[#666666]">
@@ -420,7 +420,7 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
                   className="flex items-center justify-between p-1.5 border border-[#1a1a1a] hover:border-[#262626] transition-colors text-xs font-['JetBrains_Mono']"
                 >
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-[#c8f000]" />
+                    <div className="w-2 h-2 rounded-full bg-[#7ea085]" />
                     <div>
                       <div className="text-[#f0f0f0] text-[11px] leading-tight">{node.name}</div>
                       <div className="text-[#666666] text-[10px]">{node.subdomain}</div>
@@ -443,8 +443,8 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
           {/* Geolocation Rankings */}
           <div className="flat-card p-4 bg-[#111111]">
             <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#1e1e1e]">
-              <Globe2 className="w-3.5 h-3.5 text-[#c8f000]" />
-              <span className="section-label text-[#c8f000]">top geolocations (viewer country)</span>
+              <Globe2 className="w-3.5 h-3.5 text-[#dfa838]" />
+              <span className="section-label text-[#dfa838]">top geolocations (viewer country)</span>
             </div>
 
             <div className="space-y-2.5">
@@ -459,7 +459,7 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
                   </div>
                   <div className="w-full h-1 bg-[#1a1a1a]">
                     <div
-                      className="h-full bg-[#c8f000]"
+                      className="h-full bg-[#dfa838]"
                       style={{ width: `${geo.percentage}%` }}
                     />
                   </div>
@@ -471,8 +471,8 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
           {/* Traffic Sources & Clients */}
           <div className="flat-card p-4 bg-[#111111]">
             <div className="flex items-center gap-2 mb-3 pb-2 border-b border-[#1e1e1e]">
-              <Compass className="w-3.5 h-3.5 text-[#c8f000]" />
-              <span className="section-label text-[#c8f000]">acquisition & clients</span>
+              <Compass className="w-3.5 h-3.5 text-[#dfa838]" />
+              <span className="section-label text-[#dfa838]">acquisition & clients</span>
             </div>
 
             <div className="space-y-2 text-xs font-['JetBrains_Mono']">
@@ -481,7 +481,7 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
                 {telemetry.referrers.slice(0, 3).map((ref) => (
                   <div key={ref.source} className="flex items-center justify-between">
                     <span className="text-[#888888] text-[11px]">{ref.source}</span>
-                    <span className="text-[#c8f000] font-bold text-[11px]">{ref.percentage}%</span>
+                    <span className="text-[#dfa838] font-bold text-[11px]">{ref.percentage}%</span>
                   </div>
                 ))}
               </div>
@@ -503,8 +503,8 @@ export function DashboardModal({ isOpen, onClose, onLogout }: DashboardModalProp
         {/* ── Footer Status Bar ──────────────────────────────── */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-2 pt-3 border-t border-[#1e1e1e] text-[10px] font-['JetBrains_Mono'] text-[#555555]">
           <span className="flex items-center gap-2">
-            <span className={`w-1.5 h-1.5 rounded-full ${isLiveSynced ? 'bg-[#c8f000] animate-pulse' : 'bg-[#666666]'}`} />
-            telemetry source: live aws cloudwatch metrics api (us-east-1) & real edge http probes
+            <span className={`w-1.5 h-1.5 rounded-full ${isLiveSynced ? 'bg-[#7ea085] animate-pulse' : 'bg-[#666666]'}`} />
+            telemetry source: live aws cloudwatch metrics api & ap-southeast-2 regional edge http probes
           </span>
           <span>{lastProbedTime ? `last probe: ${lastProbedTime}` : 'awaiting probe'} · session active</span>
         </div>

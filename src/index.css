@@ -4,16 +4,22 @@
    Design Tokens
 ───────────────────────────────────────── */
 :root {
-  --bg:           #0a0a0a;
-  --surface:      #111111;
-  --surface-2:    #161616;
-  --acid:         #c8f000;
-  --acid-dim:     #9ab800;
-  --text:         #f0f0f0;
-  --text-muted:   #888888;
-  --text-dim:     #666666;
-  --border:       #1e1e1e;
-  --border-hover: #c8f000;
+  --bg:           #0b0e0c;   /* Deep Basalt Obsidian */
+  --surface:      #111613;   /* Dark Bluestone */
+  --surface-2:    #161c18;   /* Elevated Slate */
+  --wattle:       #dfa838;   /* Australian Golden Wattle */
+  --wattle-bright:#edb84a;
+  --wattle-dim:   #b88226;
+  --eucalypt:     #7ea085;   /* Australian Eucalyptus Sage */
+  --eucalypt-dim: #54705a;
+  --ochre:        #c46845;   /* Desert Red Ochre */
+  --text:         #f2f4f2;   /* White Sand */
+  --text-muted:   #8e9890;   /* Eucalyptus Ash */
+  --text-dim:     #5c6760;   /* Charcoal Muted */
+  --border:       #1d2420;   /* Weathered Ironstone */
+  --border-hover: #dfa838;
+  --acid:         #dfa838;   /* Harmonized accent */
+  --acid-dim:     #b88226;
 }
 
 /* ─────────────────────────────────────────
@@ -46,8 +52,8 @@
   /* Scrollbar */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: #222; border-radius: 0; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--acid); }
+  ::-webkit-scrollbar-thumb { background: #1d2420; border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--wattle); }
 }
 
 /* ─────────────────────────────────────────
@@ -57,38 +63,40 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 2px;
-  transition: border-color 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .flat-card:hover {
   border-color: var(--border-hover);
+  background: #141b16;
 }
 
 /* ─────────────────────────────────────────
-   Acid Button
+   Action Button (Golden Wattle)
 ───────────────────────────────────────── */
 .btn-acid {
-  background: var(--acid);
-  color: #000;
+  background: var(--wattle);
+  color: #0b0e0c;
   font-family: 'JetBrains Mono', monospace;
   font-weight: 700;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   border: none;
   border-radius: 1px;
-  padding: 0.6rem 1.25rem;
+  padding: 0.5rem 1.1rem;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  transition: background 0.1s ease, transform 0.1s ease;
+  transition: all 0.15s ease;
   text-decoration: none;
 }
 
 .btn-acid:hover {
-  background: #d9ff00;
+  background: var(--wattle-bright);
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(223, 168, 56, 0.25);
 }
 
 .btn-acid:active {
@@ -117,8 +125,9 @@
 }
 
 .btn-ghost:hover {
-  border-color: var(--text-muted);
+  border-color: var(--wattle);
   color: var(--text);
+  background: rgba(223, 168, 56, 0.05);
 }
 
 /* ─────────────────────────────────────────
@@ -129,7 +138,7 @@
   font-size: 0.65rem;
   font-weight: 500;
   color: var(--text-muted);
-  background: transparent;
+  background: rgba(29, 36, 32, 0.4);
   border: 1px solid var(--border);
   padding: 0.15rem 0.5rem;
   border-radius: 1px;
@@ -137,15 +146,25 @@
 }
 
 /* ─────────────────────────────────────────
-   Acid Dot (live status)
+   Live Status Indicators
 ───────────────────────────────────────── */
 .acid-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: var(--acid);
+  background: var(--eucalypt);
+  box-shadow: 0 0 8px rgba(126, 160, 133, 0.7);
   flex-shrink: 0;
   position: relative;
+}
+
+.wattle-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--wattle);
+  box-shadow: 0 0 8px rgba(223, 168, 56, 0.6);
+  flex-shrink: 0;
 }
 
 /* ─────────────────────────────────────────

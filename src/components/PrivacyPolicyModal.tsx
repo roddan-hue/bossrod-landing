@@ -15,8 +15,8 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-[#1e1e1e]">
           <div className="flex items-center gap-2">
-            <Shield className="w-4 h-4 text-[#c8f000]" />
-            <span className="section-label text-[#c8f000]">// privacy policy & compliance</span>
+            <Shield className="w-4 h-4 text-[#dfa838]" />
+            <span className="section-label text-[#dfa838]">// privacy policy & compliance</span>
           </div>
           <button
             onClick={onClose}
@@ -46,7 +46,7 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
             <p>
               Google's use of advertising cookies enables it and its partners to serve ads to our users based on their visits to our sites and/or other sites on the Internet.
             </p>
-            <p className="text-[#c8f000]">
+            <p className="text-[#dfa838]">
               Users may opt out of personalized advertising at any time:
             </p>
             <ul className="list-disc list-inside space-y-1 text-[#aaaaaa]">
@@ -56,7 +56,7 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
                   href="https://www.google.com/settings/ads"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#f0f0f0] underline hover:text-[#c8f000] inline-flex items-center gap-1"
+                  className="text-[#f0f0f0] underline hover:text-[#dfa838] inline-flex items-center gap-1"
                 >
                   <span>Google Ad Settings</span>
                   <ExternalLink className="w-2.5 h-2.5" />
@@ -68,7 +68,7 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
                   href="https://www.aboutads.info/choices/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#f0f0f0] underline hover:text-[#c8f000] inline-flex items-center gap-1"
+                  className="text-[#f0f0f0] underline hover:text-[#dfa838] inline-flex items-center gap-1"
                 >
                   <span>AboutAds.info choices</span>
                   <ExternalLink className="w-2.5 h-2.5" />
@@ -99,7 +99,7 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
                     alert('Consent management is active for visitors located in the European Economic Area (EEA), UK, and Switzerland.');
                   }
                 }}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] bg-[#1e1e1e] hover:bg-[#282828] text-[#c8f000] border border-[#333333] hover:border-[#c8f000] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] bg-[#1e1e1e] hover:bg-[#282828] text-[#dfa838] border border-[#333333] hover:border-[#dfa838] transition-colors cursor-pointer"
               >
                 <span>// manage consent choices</span>
               </button>
@@ -143,11 +143,11 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
             </h4>
             <p>
               We may update this policy periodically to maintain compliance with legal requirements and ad network guidelines. Inquiries regarding this policy can be submitted via email to{' '}
-              <a href="mailto:contact@bossrod.com" className="text-[#c8f000] underline">
+              <a href="mailto:contact@bossrod.com" className="text-[#dfa838] underline">
                 contact@bossrod.com
               </a>{' '}
               or through our GitHub repository. A permanent static copy is always available at{' '}
-              <a href="/privacy.html" className="text-[#c8f000] underline">
+              <a href="/privacy.html" className="text-[#dfa838] underline">
                 /privacy.html
               </a>.
             </p>

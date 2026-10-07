@@ -81,8 +81,8 @@ export function SecurityGate({ onAuthenticated, onCancel }: SecurityGateProps) {
         {/* Header */}
         <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#1e1e1e]">
           <div className="flex items-center gap-2">
-            <Lock className="w-4 h-4 text-[#c8f000]" />
-            <span className="section-label text-[#c8f000]">// security checkpoint</span>
+            <Lock className="w-4 h-4 text-[#dfa838]" />
+            <span className="section-label text-[#dfa838]">// security checkpoint</span>
           </div>
           <button
             onClick={onCancel}
@@ -119,7 +119,7 @@ export function SecurityGate({ onAuthenticated, onCancel }: SecurityGateProps) {
                 disabled={Boolean(lockedOutUntil)}
                 placeholder="clearance passkey"
                 autoFocus
-                className="w-full bg-[#0a0a0a] border border-[#1e1e1e] focus:border-[#c8f000] px-3 py-2.5 text-xs text-[#f0f0f0] font-['JetBrains_Mono'] outline-none transition-colors disabled:opacity-50"
+                className="w-full bg-[#0a0a0a] border border-[#1e1e1e] focus:border-[#dfa838] px-3 py-2.5 text-xs text-[#f0f0f0] font-['JetBrains_Mono'] outline-none transition-colors disabled:opacity-50"
               />
               <KeyRound className="w-4 h-4 text-[#444444] absolute right-3 top-3 pointer-events-none" />
             </div>
