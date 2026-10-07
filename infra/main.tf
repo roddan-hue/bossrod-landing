@@ -136,6 +136,8 @@ resource "aws_cloudfront_distribution" "landing_distribution" {
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "S3-bossrod-landing"
 
+    response_headers_policy_id = "67f7725c-6f97-4210-82d7-5512b31e9d03"
+
     forwarded_values {
       query_string = false
       cookies {

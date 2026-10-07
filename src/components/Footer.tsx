@@ -1,5 +1,5 @@
 import { GithubIcon } from './icons/GithubIcon';
-import { SOCIAL_LINKS } from '../data/subdomains';
+import { SOCIAL_LINKS, SUBDOMAINS } from '../data/subdomains';
 
 interface FooterProps {
   onOpenDashboard?: () => void;
@@ -14,7 +14,7 @@ export function Footer({ onOpenDashboard, onOpenPrivacy, onOpenTerms }: FooterPr
         {/* Left: nodes status + copyright + telemetry terminal link + privacy + terms */}
         <div className="flex items-center flex-wrap gap-3">
           <div className="acid-dot" />
-          <span className="section-label">04 nodes online</span>
+          <span className="section-label">{SUBDOMAINS.length.toString().padStart(2, '0')} nodes online</span>
           <span className="text-[#1e1e1e]">·</span>
           <span className="section-label">© {new Date().getFullYear()} bossrod</span>
           

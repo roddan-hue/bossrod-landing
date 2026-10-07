@@ -106,10 +106,10 @@ export function App() {
           {/* Section header row */}
           <div className="flex items-center justify-between mb-4">
             <span className="section-label">// active deployments</span>
-            <span className="section-label">04&nbsp;nodes&nbsp;online</span>
+            <span className="section-label">{SUBDOMAINS.length.toString().padStart(2, '0')}&nbsp;nodes&nbsp;online</span>
           </div>
 
-          {/* 4 project cards in a 2x2 grid */}
+          {/* Active project cards in a responsive grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
             {SUBDOMAINS.map((project) => (
               <SubdomainCard key={project.id} project={project} />
@@ -143,7 +143,7 @@ export function App() {
                   <strong className="text-[#d0d0d0]">bossrod.com</strong> serves as the central hub and orchestrator for our network of web applications, cloud utilities, and real-time interactive systems. Each connected node operates autonomously on isolated, scalable cloud infrastructure while adhering to unified privacy, performance, and accessibility standards.
                 </p>
                 <p>
-                  From real-time multiplayer board engines like <em>Mahjong</em> to AI-assisted assessment simulators like <em>QuizMe</em>, our software focuses on high-speed execution, minimal dependencies, and transparent data practices.
+                  From real-time multiplayer board engines like <em>Asian Mahjong</em> (<a href="https://asianmahjong.com" target="_blank" rel="noopener noreferrer" className="text-[#c8f000] underline">asianmahjong.com</a>) to AI-assisted career and assessment suites like <em>getJob</em> and <em>QuizMe</em>, our software focuses on high-speed execution, minimal dependencies, and transparent data practices.
                 </p>
               </div>
 

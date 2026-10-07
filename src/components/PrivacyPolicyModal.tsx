@@ -29,9 +29,9 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
         {/* Content */}
         <div className="space-y-4 text-[#888888] leading-relaxed max-h-[70vh] overflow-y-auto pr-2">
           <div>
-            <span className="text-[#666666] text-[10px] uppercase block mb-1">Effective Date: September 2026</span>
+            <span className="text-[#666666] text-[10px] uppercase block mb-1">Effective Date: October 2026</span>
             <p className="text-[#d0d0d0]">
-              This Privacy Policy explains how <span className="text-[#f0f0f0]">bossrod.com</span> and its affiliated subdomains (<span className="text-[#f0f0f0]">quizme.bossrod.com</span>, <span className="text-[#f0f0f0]">mahjong.bossrod.com</span>, <span className="text-[#f0f0f0]">movies.bossrod.com</span>, <span className="text-[#f0f0f0]">shop.bossrod.com</span>) handle data, cookies, and user privacy in compliance with applicable standards including the Google Publisher and AdSense Policies.
+              This Privacy Policy explains how <span className="text-[#f0f0f0]">bossrod.com</span> and its affiliated applications and subdomains (<span className="text-[#f0f0f0]">asianmahjong.com</span>, <span className="text-[#f0f0f0]">garage.bossrod.com</span>, <span className="text-[#f0f0f0]">getjob.bossrod.com</span>, <span className="text-[#f0f0f0]">grocer.bossrod.com</span>, <span className="text-[#f0f0f0]">quizme.bossrod.com</span>, <span className="text-[#f0f0f0]">movies.bossrod.com</span>, <span className="text-[#f0f0f0]">shop.bossrod.com</span>) handle data, cookies, and user privacy in compliance with applicable standards including the Google Publisher and AdSense Policies.
             </p>
           </div>
 

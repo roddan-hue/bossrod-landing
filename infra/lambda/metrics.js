@@ -3,7 +3,8 @@ const { CloudWatchClient, GetMetricDataCommand } = require('@aws-sdk/client-clou
 const cw = new CloudWatchClient({ region: 'us-east-1' });
 
 const DISTRIBUTIONS = [
-  { id: 'mahjong', name: 'Mahjong', subdomain: 'mahjong.bossrod.com', distId: 'E384N8OGBWO7XK' },
+  { id: 'asianmahjong', name: 'Asian Mahjong', subdomain: 'asianmahjong.com', distId: 'E384N8OGBWO7XK' },
+  { id: 'garage', name: 'BossRod Garage', subdomain: 'garage.bossrod.com', distId: 'E30TWII5R8X212' },
   { id: 'quizme', name: 'QuizMe', subdomain: 'quizme.bossrod.com', distId: 'E20XMOENAFE9MD' },
   { id: 'movies', name: 'Movies', subdomain: 'movies.bossrod.com', distId: 'E3JR6BCQOSBSWH' },
   { id: 'shop', name: 'TrendShop', subdomain: 'shop.bossrod.com', distId: 'E950R085441RK' },

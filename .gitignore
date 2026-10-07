@@ -7,10 +7,28 @@ node_modules/
 dist/
 build/
 
-# Environment files
+# Environment & Credentials
 .env
 .env.local
 .env.*.local
+*.env
+*.env.*
+!.env.example
+
+# Certificates, Keys & Secrets (Strict Protection)
+*.pem
+*.key
+*.crt
+*.cer
+*.pfx
+*.p12
+*.jks
+*.keystore
+*.token
+*.secret
+*credentials*
+*id_rsa*
+*id_ed25519*
 
 # Terraform
 .terraform/
