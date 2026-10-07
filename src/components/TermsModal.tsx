@@ -37,7 +37,7 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
           </div>
 
           <div className="space-y-1.5">
-            <h4 className="text-[#f0f0f0] font-bold text-xs uppercase tracking-wider">
+            <h4 className="text-[#f0f0f0] font-semibold text-xs uppercase tracking-wider">
               1. Permitted Use
             </h4>
             <p>
@@ -46,7 +46,7 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
           </div>
 
           <div className="space-y-1.5">
-            <h4 className="text-[#f0f0f0] font-bold text-xs uppercase tracking-wider">
+            <h4 className="text-[#f0f0f0] font-semibold text-xs uppercase tracking-wider">
               2. Intellectual Property
             </h4>
             <p>
@@ -55,7 +55,7 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
           </div>
 
           <div className="space-y-1.5">
-            <h4 className="text-[#f0f0f0] font-bold text-xs uppercase tracking-wider">
+            <h4 className="text-[#f0f0f0] font-semibold text-xs uppercase tracking-wider">
               3. Disclaimer of Warranties
             </h4>
             <p>
@@ -64,7 +64,7 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
           </div>
 
           <div className="space-y-1.5">
-            <h4 className="text-[#f0f0f0] font-bold text-xs uppercase tracking-wider">
+            <h4 className="text-[#f0f0f0] font-semibold text-xs uppercase tracking-wider">
               4. Third-Party Advertising
             </h4>
             <p>
@@ -73,7 +73,7 @@ export function TermsModal({ isOpen, onClose }: TermsModalProps) {
           </div>
 
           <div className="space-y-1.5">
-            <h4 className="text-[#f0f0f0] font-bold text-xs uppercase tracking-wider">
+            <h4 className="text-[#f0f0f0] font-semibold text-xs uppercase tracking-wider">
               5. Contact & Inquiries
             </h4>
             <p>

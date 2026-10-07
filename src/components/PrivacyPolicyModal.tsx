@@ -37,7 +37,7 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
 
           {/* Section 1: Google AdSense & Third-Party Cookies */}
           <div className="p-3 border border-[#1e1e1e] bg-[#141414] space-y-2">
-            <h4 className="text-[#f0f0f0] font-bold text-xs uppercase tracking-wider flex items-center gap-1.5">
+            <h4 className="text-[#f0f0f0] font-semibold text-xs uppercase tracking-wider flex items-center gap-1.5">
               <span>1. Third-Party Advertising & Cookies (Google AdSense)</span>
             </h4>
             <p>
@@ -108,7 +108,7 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
 
           {/* Section 2: Log Files & Edge Telemetry */}
           <div className="space-y-1.5">
-            <h4 className="text-[#f0f0f0] font-bold text-xs uppercase tracking-wider">
+            <h4 className="text-[#f0f0f0] font-semibold text-xs uppercase tracking-wider">
               2. Log Data & Edge Analytics
             </h4>
             <p>
@@ -118,7 +118,7 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
 
           {/* Section 3: Personal Information */}
           <div className="space-y-1.5">
-            <h4 className="text-[#f0f0f0] font-bold text-xs uppercase tracking-wider">
+            <h4 className="text-[#f0f0f0] font-semibold text-xs uppercase tracking-wider">
               3. Personal Information
             </h4>
             <p>
@@ -128,7 +128,7 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
 
           {/* Section 4: External Links */}
           <div className="space-y-1.5">
-            <h4 className="text-[#f0f0f0] font-bold text-xs uppercase tracking-wider">
+            <h4 className="text-[#f0f0f0] font-semibold text-xs uppercase tracking-wider">
               4. External Links & Subdomains
             </h4>
             <p>
@@ -138,7 +138,7 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
 
           {/* Section 5: Updates & Contact */}
           <div className="space-y-1.5">
-            <h4 className="text-[#f0f0f0] font-bold text-xs uppercase tracking-wider">
+            <h4 className="text-[#f0f0f0] font-semibold text-xs uppercase tracking-wider">
               5. Policy Updates & Contact
             </h4>
             <p>

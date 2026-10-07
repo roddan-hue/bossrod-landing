@@ -133,11 +133,11 @@ export function App() {
 
           {/* bossrod — understated, condensed, architectural */}
           <h1
-            className="text-[clamp(40px,5.5vw,68px)] text-[#f2f4f2] leading-none mb-3"
+            className="text-[clamp(40px,5.5vw,68px)] text-[#f2f4f2] leading-none mb-3 tracking-tight"
             style={{
               fontFamily: "'Barlow Condensed', sans-serif",
-              fontWeight: 900,
-              letterSpacing: '-0.02em',
+              fontWeight: 600,
+              letterSpacing: '0.01em',
             }}
           >
             bossrod<span className="text-[#dfa838]">.</span>
@@ -206,7 +206,7 @@ export function App() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-[#8e9890] leading-relaxed">
               <div>
-                <h2 className="text-[#f2f4f2] font-bold text-xs uppercase mb-2">Ecosystem Architecture &amp; Australian Engineering</h2>
+                <h2 className="text-[#f2f4f2] font-semibold text-xs uppercase mb-2">Ecosystem Architecture &amp; Australian Engineering</h2>
                 <p className="mb-2">
                   <strong className="text-[#f2f4f2]">bossrod.com</strong> serves as the central hub and orchestrator for our network of web applications, cloud utilities, and real-time interactive systems. Headquartered and engineered out of Melbourne, Australia, connected nodes execute on isolated cloud infrastructure with low-latency edge delivery via AWS CloudFront points of presence in Sydney, Melbourne, Perth, and global regions.
                 </p>
@@ -216,7 +216,7 @@ export function App() {
               </div>
 
               <div>
-                <h2 className="text-[#f2f4f2] font-bold text-xs uppercase mb-2">Data Sovereignty &amp; Publisher Standards</h2>
+                <h2 className="text-[#f2f4f2] font-semibold text-xs uppercase mb-2">Data Sovereignty &amp; Publisher Standards</h2>
                 <p className="mb-2">
                   Our ecosystem adheres strictly to modern web safety and monetization standards, including the Australian Privacy Principles (APPs, Privacy Act 1988), the IAB Europe Transparency and Consent Framework (TCF v2.2), and digital authorized seller verification (<a href="/ads.txt" className="text-[#dfa838] underline">ads.txt</a>).
                 </p>

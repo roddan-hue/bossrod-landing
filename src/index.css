@@ -44,9 +44,9 @@
   /* Headings use Barlow Condensed */
   h1, h2, h3, h4, .headline {
     font-family: 'Barlow Condensed', system-ui, sans-serif;
-    font-weight: 900;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.01em;
   }
 
   /* Scrollbar */
@@ -78,7 +78,7 @@
   background: var(--wattle);
   color: #0b0e0c;
   font-family: 'JetBrains Mono', monospace;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.72rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
